@@ -331,7 +331,7 @@
         .label-50kg { background: #0f172a; color: white; padding: 2px 10px; border-radius: 4px; font-size: 0.7rem; font-weight: 600; }
 
         /* Hide/Show pages via radio buttons (mock navigation) */
-        .page-section { display: none; }
+        .page-section { display: block; }
         #page-home:checked ~ .page-home,
         #page-shop:checked ~ .page-shop,
         #page-pdp:checked ~ .page-pdp,

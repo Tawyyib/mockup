@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Foodcart Stores – Interactive Mockup</title>
+    <link rel="stylesheet" href="assets/mockup.css">
+    <script defer src="assets/mockup.js"></script>    
+</head>
+<body>
+
+<div id="header-placeholder"></div>
+
+<main class="container" >
+
+    <!-- ============================================ -->
+    <!-- PAGE: CHECKOUT -->
+    <!-- ============================================ -->
+    <div class="page-section page-checkout">
+        <div class="mockup-label">✅ CHECKOUT MOCKUP</div>
+        <div class="checkout-grid">
+            <div class="checkout-form">
+                <h3 style="margin-bottom:16px;">📋 Billing Details</h3>
+                <label>Full Name <span class="required">*</span></label>
+                <input type="text" placeholder="John Doe" value="John Doe">
+                
+                <label>Email <span class="required">*</span></label>
+                <input type="email" placeholder="john@example.com" value="john@example.com">
+                
+                <label>Phone <span class="required">*</span></label>
+                <input type="tel" placeholder="08012345678" value="08012345678">
+
+                <label>Street / Bus Stop <span class="required">*</span></label>
+                <input type="text" placeholder="123 Awolowo Road, Opposite Shoprite" value="123 Awolowo Road">
+
+                <!-- CRITICAL: LGA DROPDOWN -->
+                <label>Local Government Area (LGA) <span class="required">*</span></label>
+                <select>
+                    <option value="">Select LGA...</option>
+                    <option selected>Ikeja</option>
+                    <option>Surulere</option>
+                    <option>Eti-Osa (Lekki/VI)</option>
+                    <option>Lagos Mainland</option>
+                    <option>Apapa</option>
+                    <option>Alimosho</option>
+                    <option>Agege</option>
+                    <option>Badagry</option>
+                    <option>Epe</option>
+                    <option>Ikorodu</option>
+                    <option>Kosofe</option>
+                    <option>Mushin</option>
+                    <option>Ojo</option>
+                    <option>Oshodi-Isolo</option>
+                    <option>Shomolu</option>
+                </select>
+
+                <!-- CRITICAL: LANDMARK FIELD -->
+                <label>Landmark / Nearest Junction <span class="required">*</span></label>
+                <input type="text" placeholder="e.g. Beside Total Filling Station" value="Beside Total Filling Station">
+
+                <label>Delivery Speed</label>
+                <select>
+                    <option>🚀 Express (Same-Day) – ₦700</option>
+                    <option>📦 Standard (3-5 days) – ₦300</option>
+                </select>
+
+                <label>Payment Method</label>
+                <div style="display:flex; gap:16px; flex-wrap:wrap; margin-bottom:16px;">
+                    <label><input type="radio" name="payment" checked> 💳 Card</label>
+                    <label><input type="radio" name="payment"> 🏦 Bank Transfer</label>
+                    <label><input type="radio" name="payment"> 📱 USSD</label>
+                    <label><input type="radio" name="payment"> 💵 Cash on Delivery</label>
+                </div>
+                <div style="background:#f1f5f9; padding:12px; border-radius:8px; border:1px dashed #94a3b8;">
+                    🔒 <span style="color:#64748b;">Paystack iframe (card details) will appear here.</span>
+                </div>
+            </div>
+            <div class="order-summary">
+                <h4>🛍️ Your Order</h4>
+                <div class="row"><span>NutraGold Rice (5kg) x2</span><span>₦14,000</span></div>
+                <div class="row"><span>NutraGold Honey Beans (Jumbo) x1</span><span>₦83,000</span></div>
+                <div class="row"><span>Subtotal</span><span>₦97,000</span></div>
+                <div class="row" style="color:#16a34a;"><span>🚚 Express Delivery (Ikeja)</span><span>₦700</span></div>
+                <div class="row total"><span>Total</span><span>₦97,700</span></div>
+                <button class="btn btn-green" style="width:100%; padding:14px; border-radius:8px; font-size:1.1rem; margin-top:12px;">✔ Place Order</button>
+                <p style="font-size:0.75rem; color:#64748b; text-align:center; margin-top:8px;">🔒 Secure transaction via Paystack/Flutterwave</p>
+            </div>
+        </div>
+    </div>
+
+</main>
+
+<div id="footer-placeholder"></div>
+  <!-- A single, reusable script -->
+  <script src="loader.js"></script>
+
+</body>
+</html>

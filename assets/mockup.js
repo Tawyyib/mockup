@@ -26,7 +26,7 @@ let appInitialized = false;
         // 2. Hide all sections
         Object.values(sections).forEach(section => {
 
-            if (section) section.style.display = 'none';
+            //if (section) section.style.display = 'none';
 
         });
 
@@ -70,7 +70,11 @@ let appInitialized = false;
     });
 
     // 4. Set initial state: show Home
-    document.getElementById('page-home').checked = true;
+    const checkbox = document.getElementById('page-home');
+    if (checkbox) {
+        checkbox.checked = true;
+    }
+        
     showPage('home');
 
     // 5. Mobile hamburger toggle (with null check)
