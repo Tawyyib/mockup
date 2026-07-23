@@ -373,8 +373,8 @@ document.addEventListener('DOMContentLoaded', function() {
         (function() {
 
             const toggleBtns = document.querySelectorAll('.pdp-toggle-btn');
-            const retailElements = document.querySelectorAll('.price-retail, .stock-retail, .qty-retail, .wholesale-prompt, .delivery-note-retail');
-            const wholesaleElements = document.querySelectorAll('.price-wholesale, .stock-wholesale, .qty-wholesale, .delivery-note-wholesale');
+            const retailElements = document.querySelectorAll('.price-retail, .stock-retail, .qty-retail, .wholesale-prompt, .delivery-note-retail' );
+            const wholesaleElements = document.querySelectorAll('.price-wholesale, .stock-wholesale, .qty-wholesale, .delivery-note-wholesale, .moq');
 
             function setPDPView(view) {
                 // Update button styles
@@ -392,11 +392,11 @@ document.addEventListener('DOMContentLoaded', function() {
 
                 // Show/hide elements
                 if (view === 'retail') {
-                    retailElements.forEach(el => el.style.display = 'block');
+                    retailElements.forEach(el => el.style.display = 'flex');
                     wholesaleElements.forEach(el => el.style.display = 'none');
                 } else {
                     retailElements.forEach(el => el.style.display = 'none');
-                    wholesaleElements.forEach(el => el.style.display = 'block');
+                    wholesaleElements.forEach(el => el.style.display = 'flex');
                 }
             }
 
