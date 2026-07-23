@@ -525,8 +525,10 @@
         }
 
         .variation-selector {
-            margin: 20px 0;
+            margin: 0;
+            padding: 0;
         }
+
         .variation-selector select {
             margin-bottom: 10px;
             padding: 12px;
@@ -536,6 +538,7 @@
             font-size: 1rem;
             background: white;
         }
+
         .qty-add { display: flex; gap: 12px; align-items: center; flex-wrap: wrap; }
         .qty-add input { width: 70px; padding: 10px; border: 1px solid #e2e8f0; border-radius: 8px; text-align: center; }
         .qty-add .btn { padding: 10px 30px; border-radius: 8px; }
@@ -567,6 +570,9 @@
         @media (max-width: 768px) { .footer-grid { grid-template-columns: 1fr; } }
 
         /* ---------- UTILITY ---------- */
+        .d-none {
+            display: none;
+        }
         .mt-20 { margin-top: 20px; }
         .mb-20 { margin-bottom: 20px; }
         .text-center { text-align: center; }
