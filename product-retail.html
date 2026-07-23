@@ -42,38 +42,49 @@
 
         <!-- Summary -->
         <div class="pdp-summary">
-            <h1>NutraGold Rice</h1>
-            <p class="sku">SKU: RICE-001</p>
 
-            <!-- ===== RETAIL PRICE (Visible in both views, but styled differently) ===== -->
-            <div class="price-retail" style="font-size:1.2rem; color:#64748b; text-decoration:line-through;">
-                Retail: ₦7,000 – ₦59,000
+            <div class="pdp-summary-group">
+                <h1 class="title">Nutragold Parboiled Nigerian Rice</h1>
+                <p class="sku">SKU: RICE-001</p>
             </div>
 
-            <!-- ===== WHOLESALE PRICE (Prominent) ===== -->
-            <div class="price-wholesale" style="font-size:2.2rem; font-weight:700; color:#16a34a; margin:4px 0 8px;">
-                Wholesale: ₦6,800 – ₦52,000
-            </div>
+            <div class="pdp-summary-group">
 
-            <!-- ===== STOCK STATUS (Wholesale-specific) ===== -->
-            <div class="stock-wholesale" style="background:#d1fae5; padding:4px 14px; border-radius:30px; display:inline-block; font-size:0.8rem; font-weight:600; color:#065f46;">
-                ✅ 500+ units available for bulk order
-            </div>
+                <!-- ===== RETAIL PRICE (Visible in both views, but styled differently) ===== -->
+                <div class="price">
+                    <span class="label retail">Retail: </span>
+                    ₦7,000.00 – ₦59,000.00
+                </div>
 
-            <!-- ===== RETAIL STOCK (Simpler) ===== -->
-            <div class="stock-retail" style="background:#e2e8f0; padding:4px 14px; border-radius:30px; display:inline-block; font-size:0.8rem; color:#475569; margin-top:4px;">
-                In Stock
+                <!-- ===== WHOLESALE PRICE (Prominent) ===== -->
+                <div class="price wholesale" style="display: none;">
+                    <span class="label wholesale">Wholesale: </span>
+                    ₦6,800.00 – ₦52,000.00
+                </div>
+
+                <!-- ===== STOCK STATUS (Wholesale-specific) ===== -->
+                <div class="stock-status wholesale" style="display:none;">
+                    500+ units available for bulk order
+                </div>
+
+                <!-- ===== RETAIL STOCK (Simpler) ===== -->
+                <div class="stock-status retail" >
+                    In Stock
+                </div>
+            
             </div>
 
             <!-- ===== WHOLESALE PROMPT (Retail only) ===== -->
-            <div class="wholesale-prompt" style="background:#fef3c7; padding:12px 16px; border-radius:8px; border-left:4px solid #f59e0b; margin:12px 0;">
+            <div class="wholesale-prompt">
                 💼 <strong>Wholesale prices available!</strong> 
                 <a href="#" style="color:#d97706; font-weight:600;">Register as a retailer</a> to unlock bulk discounts.
             </div>
 
             <!-- ===== VARIATION SELECTOR ===== -->
             <div class="variation-selector">
+
                 <label style="font-weight:600;">Weight:</label>
+
                 <select>
                     <option value="">Choose an option</option>
                     <option>5kg – ₦7,000 (Retail) / ₦6,800 (Wholesale)</option>
@@ -81,6 +92,7 @@
                     <option>25kg – ₦29,000 (Retail) / ₦26,000 (Wholesale)</option>
                     <option>50kg Bag – ₦59,000 (Retail) / ₦52,000 (Wholesale)</option>
                 </select>
+                
             </div>
 
             <!-- ===== QUANTITY + ADD TO CART (Retail vs Wholesale) ===== -->
