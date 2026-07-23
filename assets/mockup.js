@@ -373,8 +373,8 @@ document.addEventListener('DOMContentLoaded', function() {
         (function() {
 
             const toggleBtns = document.querySelectorAll('.pdp-toggle-btn');
-            const retailElements = document.querySelectorAll('.price-retail, .stock-retail, .qty-retail, .wholesale-prompt, .delivery-note-retail' );
-            const wholesaleElements = document.querySelectorAll('.price-wholesale, .stock-wholesale, .qty-wholesale, .delivery-note-wholesale, .moq');
+            const retailElements = document.querySelectorAll('.price-retail, .stock-retail, .qty-retail, .wholesale-prompt, .delivery-note.retail' );
+            const wholesaleElements = document.querySelectorAll('.price-wholesale, .stock-wholesale, .qty-wholesale, .delivery-note.wholesale, .moq');
 
             function setPDPView(view) {
                 // Update button styles

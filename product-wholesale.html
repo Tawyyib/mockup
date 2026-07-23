@@ -18,124 +18,140 @@
     <!-- ============================================ -->
     <section class="main-content">
 
-    <!-- Toggle Switch (Retail / Wholesale) -->
-    <div style="display: flex; align-items:center; gap:12px; background:#f1f5f9; padding:8px 16px; border-radius:30px; width:fit-content; margin-bottom:20px; border:1px solid #e2e8f0;">
-        <span style="font-weight:600; font-size:0.85rem; color:#475569;">View as:</span>
-        <button class="pdp-toggle-btn active" data-view="retail" style="background:#0f172a; color:white; border:none; padding:4px 16px; border-radius:20px; font-weight:600; font-size:0.85rem; cursor:pointer;">🛒 Retail</button>
-        <button class="pdp-toggle-btn" data-view="wholesale" style="background:transparent; color:#475569; border:none; padding:4px 16px; border-radius:20px; font-weight:600; font-size:0.85rem; cursor:pointer;">📦 Wholesale</button>
-    </div>
-
-    <div class="pdp-grid">
-
-        <!-- Gallery -->
-        <div class="pdp-gallery" style="flex-direction:column; min-height:350px;">
-            <span style="font-size:4rem;">🍚</span>
-            <span style="color:#64748b;">Product Gallery</span>
-            <div style="display:flex; gap:8px; margin-top:12px;">
-                <span style="width:50px; height:50px; background:#e2e8f0; border-radius:6px;"></span>
-                <span style="width:50px; height:50px; background:#e2e8f0; border-radius:6px;"></span>
-                <span style="width:50px; height:50px; background:#e2e8f0; border-radius:6px;"></span>
-            </div>
+        <!-- Toggle Switch (Retail / Wholesale) -->
+        <div style="display: flex; align-items:center; gap:12px; background:#f1f5f9; padding:8px 16px; border-radius:30px; width:fit-content; margin-bottom:20px; border:1px solid #e2e8f0;">
+            <span style="font-weight:600; font-size:0.85rem; color:#475569;">View as:</span>
+            <button class="pdp-toggle-btn active" data-view="retail" style="background:#0f172a; color:white; border:none; padding:4px 16px; border-radius:20px; font-weight:600; font-size:0.85rem; cursor:pointer;">🛒 Retail</button>
+            <button class="pdp-toggle-btn" data-view="wholesale" style="background:transparent; color:#475569; border:none; padding:4px 16px; border-radius:20px; font-weight:600; font-size:0.85rem; cursor:pointer;">📦 Wholesale</button>
         </div>
 
-        <!-- Summary -->
-        <div class="pdp-summary">
+        <div class="pdp-grid">
 
-            <h1 class="title">Nutragold Parboiled Nigerian Rice</h1>
-                
-            <p class="sku">SKU: RICE-001</p>            
-                
-            <!-- ===== RETAIL PRICE (Visible in both views, but styled differently) ===== -->
-            <div class="price d-none">₦7,000.00 – ₦59,000.00 <span class="label retail">RP*</span></div>
-
-                <!-- ===== WHOLESALE PRICE (Prominent) ===== -->
-            <div class="price">₦6,800.00 – ₦52,000.00 <span class="label wholesale">WSP*</span></div>
-
-            <div class="pdp-summary-group">
-
-                <!-- ===== STOCK STATUS (Wholesale-specific) ===== -->
-                <span class="stock-status wholesale">500+ units available for bulk order</span>
-
-                <!-- ===== RETAIL STOCK (Simpler) ===== -->
-                <span class="stock-status retail d-none">In Stock</span>
-
-                <!-- ===== WHOLESALE PROMPT (Retail only) ===== -->
-                <span class="wholesale-prompt d-none">Want wholesale prices?!&nbsp;<a href="#" class="wholesale-register">Register Now</a>&nbsp;for a Retail Account.</span> 
-
+            <!-- Gallery -->
+            <div class="pdp-gallery" style="flex-direction:column; min-height:350px;">
+                <span style="font-size:4rem;">🍚</span>
+                <span style="color:#64748b;">Product Gallery</span>
+                <div style="display:flex; gap:8px; margin-top:12px;">
+                    <span style="width:50px; height:50px; background:#e2e8f0; border-radius:6px;"></span>
+                    <span style="width:50px; height:50px; background:#e2e8f0; border-radius:6px;"></span>
+                    <span style="width:50px; height:50px; background:#e2e8f0; border-radius:6px;"></span>
+                </div>
             </div>
 
-            <!-- ===== VARIATION SELECTOR ===== -->
-            <div class="variation-selector">
+            <!-- Summary -->
+            <div class="pdp-summary">
 
-                <label class="">Package Size:</label>
+                <h1 class="title">Nutragold Parboiled Nigerian Rice</h1>
 
-                <div class="selector-wrap">
+                <div class="pdp-price-meta">
+
+                    <div class="meta-inner">
+
+                        <!-- ===== RETAIL PRICE (Visible in both views, but styled differently) ===== -->
+                        <div class="price d-none">₦7,000.00 – ₦59,000.00 <span class="label">Retail Price</span></div>
+
+                            <!-- ===== WHOLESALE PRICE (Prominent) ===== -->
+                        <div class="price">₦6,800.00 – ₦52,000.00 <span class="label">Wholesale Price</span></div>
                         
-                    <select name="weight-price" title="weight-price" class="select-retail d-none">
-                        <option value="">Select an Option</option>
-                        <option>5kg – ₦7,000 (Retail)</option>
-                        <option>10kg – ₦13,000 (Retail)</option>
-                        <option>25kg – ₦29,000 (Retail)</option>
-                        <option>50kg Bag – ₦59,000 (Retail)</option>
-                    </select>
+                        <!-- ===== RETAIL STOCK (Simpler) ===== -->
+                        <span class="stock-status in-stock">✅ In Stock</span>
 
-                    <select name="weight-price" title="weight-price" class="select-wholesale">
-                        <option value="">Select an Option</option>
-                        <option>5kg –  ₦6,800 (Wholesale)</option>
-                        <option>10kg – ₦12,000 (Wholesale)</option>
-                        <option>25kg –  ₦26,000 (Wholesale)</option>
-                        <option>50kg Bag – ₦52,000 (Wholesale)</option>
-                    </select>
-
-                </div>
-
-            </div>
-
-            <!-- ===== QUANTITY + ADD TO CART (Retail vs Wholesale) ===== -->
-            <div class="qty-add">
-
-                <!-- Retail QTY (default 1) -->
-                <div class="qty-retail d-none">
-                    <label class="font-weight:600;">Qty:</label>
-                    <input type="number" value="1" min="1" style="width:60px; padding:8px; border:1px solid #e2e8f0; border-radius:6px; text-align:center;">
-                    <button class="btn btn-green" style="padding:10px 24px; border-radius:6px;">➕ Add to Cart</button>
-                </div>
-
-                <!-- Wholesale QTY (default 10) -->
-                <div class="qty-wholesale">
-
-                    <label class="">Qty:</label>
-
-                    <div style="display:flex; align-items:center; border:1px solid #e2e8f0; border-radius:6px; overflow:hidden;">
-                        <button class="qty-stepper" style="background:#f1f5f9; border:none; padding:8px 14px; cursor:pointer; font-size:1.2rem;">−</button>
-                        <input type="number" value="10" min="10" step="1" style="width:60px; padding:8px; border:none; text-align:center; font-weight:600;">
-                        <button class="qty-stepper" style="background:#f1f5f9; border:none; padding:8px 14px; cursor:pointer; font-size:1.2rem;">+</button>
                     </div>
 
-                    <button class="btn" style="background:#0f172a; color:white; padding:10px 30px; border-radius:6px; border:none; font-weight:600; cursor:pointer;">📦 Add to Bulk Cart</button>
-                    
+                    <!-- ===== WHOLESALE PROMPT (Retail only) ===== -->
+                    <span class="wholesale-prompt d-none">Want wholesale prices?!&nbsp;<a href="#" class="wholesale-register">Register Now</a>&nbsp;for a Retail Account.</span> 
+
                 </div>
 
-                <label class="moq">Minimum Order Quantity (MoQ): 10 bags</label>
+                <!-- ===== PRODUCT SHORT DESCRIPTION ===== -->
+                <div class="overview">
+                    <h4 class="title">Quick Overview</h4>
+                    <p class="short-desc">Premium stone-free rice. Sourced from reputable farms. Available in retail and wholesale packs. Perfect for households and food businesses.</p>
+                </div>
+
+                <!-- ===== VARIATION SELECTOR ===== -->
+                <div class="variation-selector">
+
+                    <label class="label">Package Size:</label>
+
+                    <div class="selector-wrap">
+                            
+                        <select name="weight-price" title="weight-price" class="select-retail d-none">
+                            <option value="">Select an Option</option>
+                            <option>5kg – ₦7,000 (Retail)</option>
+                            <option>10kg – ₦13,000 (Retail)</option>
+                            <option>25kg – ₦29,000 (Retail)</option>
+                            <option>50kg Bag – ₦59,000 (Retail)</option>
+                        </select>
+
+                        <select name="weight-price" title="weight-price" class="select-wholesale">
+                            <option value="">Select an Option</option>
+                            <option>5kg –  ₦6,800 (Wholesale)</option>
+                            <option>10kg – ₦12,000 (Wholesale)</option>
+                            <option>25kg –  ₦26,000 (Wholesale)</option>
+                            <option>50kg Bag – ₦52,000 (Wholesale)</option>
+                        </select>
+
+                    </div>
+
+                </div>
+
+                <!-- ===== STOCK STATUS (Wholesale-specific) ===== -->
+                <span class="stock-hold-count">250 in stock</span>
+
+                <!-- ===== QUANTITY + ADD TO CART (Retail vs Wholesale) ===== -->
+                <div class="qty-add">
+
+                    <!-- Retail QTY (default 1) -->
+                    <div class="qty-input retail d-none">
+
+                        <label for="qty-input" class="label">Qty:</label>
+                        <input name="qty-input" type="number" value="1" min="1" title="qty-count">
+                        <button type="submit" class="btn btn-green">Add to Cart</button>
+
+                    </div>
+
+                    <!-- Wholesale QTY (default 10) -->
+                    <div class="qty-input wholesale">
+
+                        <label for="qty-input" class="label">Qty:</label>
+                        <input name="qty-input" type="number" value="10" min="10" step="1" title="qty-count">
+                        <button type="submit" class="btn btn-primary">Add Bulk to  Cart</button>
+                        
+                    </div>
+
+                    <span class="moq">Minimum Order Quantity (MoQ): 10 bags</span>
+
+                </div>
+
+                <div class="pdp-summary-group">
+                    
+                    <p class="sku">SKU: RICE-001</p>            
+
+                </div>
+
+                <div class="pdp-summary-group">
+
+                    <!-- ===== WHOLESALE DELIVERY NOTE ===== -->
+                    <span class="delivery-note wholesale">
+                        🚚&nbsp;<strong>Free delivery</strong>&nbsp;on wholesale orders above ₦100,000 within Lagos.
+                    </span>
+
+                    <span class="delivery-note retail">
+                        🚚 Same-day delivery within Lagos. Fee calculated at checkout.
+                    </span>     
+
+                </div>
 
             </div>
 
-            <!-- ===== WHOLESALE DELIVERY NOTE ===== -->
-            <div class="delivery-note-wholesale" style="margin-top:12px; background:#f1f5f9; padding:10px 14px; border-radius:8px; font-size:0.9rem; color:#0f172a; border-left:4px solid #16a34a;">
-                🚚 <strong>Free delivery</strong> on wholesale orders above ₦100,000 within Lagos.
-            </div>
-            <div class="delivery-note-retail" style="margin-top:12px; background:#f1f5f9; padding:10px 14px; border-radius:8px; font-size:0.9rem; color:#0f172a;">
-                🚚 Same-day delivery within Lagos. Fee calculated at checkout.
-            </div>
-
-            <!-- ===== PRODUCT DESCRIPTION ===== -->
-            <div style="margin-top:20px; border-top:1px solid #e2e8f0; padding-top:16px;">
-                <h4>📋 Product Details</h4>
-                <p style="font-size:0.95rem; color:#475569;">Premium stone-free rice. Sourced from reputable farms. Available in retail and wholesale packs. Perfect for households and food businesses.</p>
-            </div>
         </div>
 
-    </div>
+        <!-- ===== PRODUCT SUMMARY ===== -->
+        <div style="margin-top:20px; border-top:1px solid #e2e8f0; padding-top:16px;">
+            <h4>📋 Product Details</h4>
+            <p style="font-size:0.95rem; color:#475569;">Premium stone-free rice. Sourced from reputable farms. Available in retail and wholesale packs. Perfect for households and food businesses.</p>
+        </div>
 
     </section>
 
