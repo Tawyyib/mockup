@@ -524,8 +524,18 @@
             font-weight: 600;
         }
 
-        .variation-selector { margin: 20px 0; }
-        .variation-selector select { width: 100%; padding: 12px; border: 1px solid #e2e8f0; border-radius: 8px; margin-bottom: 10px; font-size: 1rem; background: white; }
+        .variation-selector {
+            margin: 20px 0;
+        }
+        .variation-selector select {
+            margin-bottom: 10px;
+            padding: 12px;
+            width: 100%;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            font-size: 1rem;
+            background: white;
+        }
         .qty-add { display: flex; gap: 12px; align-items: center; flex-wrap: wrap; }
         .qty-add input { width: 70px; padding: 10px; border: 1px solid #e2e8f0; border-radius: 8px; text-align: center; }
         .qty-add .btn { padding: 10px 30px; border-radius: 8px; }
