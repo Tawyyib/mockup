@@ -28,14 +28,25 @@
         <div class="pdp-grid">
 
             <!-- Gallery -->
-            <div class="pdp-gallery" style="flex-direction:column; min-height:350px;">
-                <span style="font-size:4rem;">🍚</span>
-                <span style="color:#64748b;">Product Gallery</span>
-                <div style="display:flex; gap:8px; margin-top:12px;">
-                    <span style="width:50px; height:50px; background:#e2e8f0; border-radius:6px;"></span>
-                    <span style="width:50px; height:50px; background:#e2e8f0; border-radius:6px;"></span>
-                    <span style="width:50px; height:50px; background:#e2e8f0; border-radius:6px;"></span>
+            <div class="pdp-gallery">
+
+                <div class="pdp-gallery-inner">
+
+                    <div class="gallery-main-image">
+                        
+                        <span style="font-size:4rem;">🍚</span>
+
+                    </div>
+
+                    <span style="color:#64748b;">Product Gallery</span>
+                    <div style="display:flex; gap:8px; margin-top:12px;">
+                        <span style="width:50px; height:50px; background:#e2e8f0; border-radius:6px;"></span>
+                        <span style="width:50px; height:50px; background:#e2e8f0; border-radius:6px;"></span>
+                        <span style="width:50px; height:50px; background:#e2e8f0; border-radius:6px;"></span>
+                    </div>
+
                 </div>
+
             </div>
 
             <!-- Summary -->
@@ -68,69 +79,75 @@
                     <h4 class="title">Quick Overview</h4>
                     <p class="short-desc">Premium stone-free rice. Sourced from reputable farms. Available in retail and wholesale packs. Perfect for households and food businesses.</p>
                 </div>
+                
+                <!-- ===== STOCK SELECTION ===== -->
+                <div class="variant-selection">
 
-                <!-- ===== VARIATION SELECTOR ===== -->
-                <div class="variation-selector">
+                    <!-- ===== VARIATION SELECTOR ===== -->
+                    <div class="variation-selector">
 
-                    <label class="label">Package Size:</label>
+                        <label class="label">Package Size:</label>
 
-                    <div class="selector-wrap">
-                            
-                        <select name="weight-price" title="weight-price" class="select-retail d-none">
-                            <option value="">Select an Option</option>
-                            <option>5kg – ₦7,000 (Retail)</option>
-                            <option>10kg – ₦13,000 (Retail)</option>
-                            <option>25kg – ₦29,000 (Retail)</option>
-                            <option>50kg Bag – ₦59,000 (Retail)</option>
-                        </select>
+                        <div class="selector-wrap">
+                                    
+                            <select id="retail" name="weight-price" title="weight-price" class="select-retail d-none">
+                                <option value="">Select an Option</option>
+                                <option value="5kg" selected>5kg – ₦7,000 (Retail)</option>
+                                <option value="10kg">10kg – ₦13,000 (Retail)</option>
+                                <option value="25kg">25kg – ₦29,000 (Retail)</option>
+                                <option value="50kg">50kg Bag – ₦59,000 (Retail)</option>
+                            </select>
 
-                        <select name="weight-price" title="weight-price" class="select-wholesale">
-                            <option value="">Select an Option</option>
-                            <option>5kg –  ₦6,800 (Wholesale)</option>
-                            <option>10kg – ₦12,000 (Wholesale)</option>
-                            <option>25kg –  ₦26,000 (Wholesale)</option>
-                            <option>50kg Bag – ₦52,000 (Wholesale)</option>
-                        </select>
+                            <select id="wholesale" name="weight-price" title="weight-price" class="select-wholesale">
+                                <option value="">Select an Option</option>
+                                <option value="5kg" selected>5kg –  ₦6,800 (Wholesale)</option>
+                                <option value="10kg">10kg – ₦12,000 (Wholesale)</option>
+                                <option value="25kg">25kg –  ₦26,000 (Wholesale)</option>
+                                <option value="50kg">50kg Bag – ₦52,000 (Wholesale)</option>
+                            </select>
 
-                    </div>
-
-                </div>
-
-                <!-- ===== STOCK STATUS (Wholesale-specific) ===== -->
-                <span class="stock-hold-count">250 in stock</span>
-
-                <!-- ===== QUANTITY + ADD TO CART (Retail vs Wholesale) ===== -->
-                <div class="qty-add">
-
-                    <!-- Retail QTY (default 1) -->
-                    <div class="qty-input retail d-none">
-
-                        <label for="qty-input" class="label">Qty:</label>
-                        <input name="qty-input" type="number" value="1" min="1" title="qty-count">
-                        <button type="submit" class="btn btn-green">Add to Cart</button>
+                        </div>
 
                     </div>
 
-                    <!-- Wholesale QTY (default 10) -->
-                    <div class="qty-input wholesale">
+                    <!-- ===== STOCK STATUS (Wholesale-specific) ===== -->
+                    <span class="variant-unit-price">₦6,800.00</span>
 
-                        <label for="qty-input" class="label">Qty:</label>
-                        <input name="qty-input" type="number" value="10" min="10" step="1" title="qty-count">
-                        <button type="submit" class="btn btn-primary">Add Bulk to  Cart</button>
-                        
-                    </div>
-
-                    <span class="moq">Minimum Order Quantity (MoQ): 10 bags</span>
-
-                </div>
-
-                <div class="pdp-summary-group">
+                    <!-- ===== STOCK STATUS (Wholesale-specific) ===== -->
+                    <span class="variant-unit-count">250 in stock</span>
                     
-                    <p class="sku">SKU: RICE-001</p>            
+                    <!-- ===== SKU CODE (Wholesale-specific) ===== -->
+                    <span class="sku">SKU: RICE-001</span>            
+
+                    <!-- ===== QUANTITY + ADD TO CART (Retail vs Wholesale) ===== -->
+                    <div class="qty-add">
+
+                        <!-- Retail QTY (default 1) -->
+                        <div class="qty-input retail d-none">
+
+                            <label for="qty-input" class="label">Qty:</label>
+                            <input name="qty-input" type="number" value="1" min="1" title="qty-count">
+                            <button type="submit" class="btn btn-green">Add to Cart</button>
+
+                        </div>
+
+                        <!-- Wholesale QTY (default 10) -->
+                        <div class="qty-input wholesale">
+
+                            <label for="qty-input" class="label">Qty:</label>
+                            <input name="qty-input" type="number" value="10" min="10" step="1" title="qty-count">
+                            <button type="submit" class="btn btn-primary">Add Bulk to  Cart</button>
+                            
+                        </div>
+
+                        <span class="moq">Minimum Order Quantity (MoQ): 10 bags</span>
+
+                    </div>
 
                 </div>
 
-                <div class="pdp-summary-group">
+                <!-- ===== STOCK NOTES ===== -->
+                <div class="pdp-summary-notes">
 
                     <!-- ===== WHOLESALE DELIVERY NOTE ===== -->
                     <span class="delivery-note wholesale">
