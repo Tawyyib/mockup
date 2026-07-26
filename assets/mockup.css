@@ -853,8 +853,8 @@
         .account-grid {
             margin: 0;
             display:grid;
-            grid-template-columns:1.5fr 1fr;
-            gap:40px;
+            grid-template-columns: 1fr;
+            gap: 2.5rem;
             align-items:start;
         }
 
@@ -980,13 +980,22 @@
                 aspect-ratio: 1;                    
             }
 
+            .account-grid {
+                grid-template-columns: repeat(2, 1fr);
+                    gap: 2.5rem;
+        }
+
         }
 
         @media screen and ( min-width: 992px ) {
 
             .pdp-grid {
                 grid-template-columns: 1.45fr 1.55fr;
-                gap: 3.25rem;
+                gap: 3.125rem;
+            }
+
+            .account-grid {
+                grid-template-columns: 1.5fr 1fr;
             }
 
         }
