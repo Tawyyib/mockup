@@ -370,6 +370,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
 })();
 
+/*
         (function() {
 
             const toggleBtns = document.querySelectorAll('.pdp-toggle-btn');
@@ -410,4 +411,4 @@ document.addEventListener('DOMContentLoaded', function() {
             // Default to Wholesale (since this mockup is for wholesale customer)
             setPDPView('wholesale');
         })();
-    
+*/    
