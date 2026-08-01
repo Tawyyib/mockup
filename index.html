@@ -5,266 +5,352 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Foodcart Stores – Interactive Mockup</title>
         <link rel="stylesheet" href="assets/mockup.css?v=2">
-        <script src="assets/mockup.js?v=2"></script>    
+        <script src="assets/mockup-2.js?v=2"></script>    
     </head>
-
+    
     <div id="header-placeholder" class=" sticky-top"></div>
 
         <main class="main" >
 
-                <!-- Hero -->
-                <section class="hero">
+            <!-- Hero -->
+            <section class="hero">
                 
-                    <!-- Hero Split -->
-                    <div class="hero-inner container">
+                <!-- Hero Split -->
+                <div class="hero-inner container">
 
-                        <div class="hero-col retail">
-                            <span class="tag" >RETAIL</span>
-                            <h1>Premium Dry Foods For Your Home</h1>
-                            <p>Single units, fast delivery across Lagos.</p>
-                            <a href="shop.html" class="btn btn-green uppertext">Shop Now →</a>
-                        </div>
-
-                        <div class="hero-col wholesale">
-                            <span class="tag" >B2B WHOLESALE</span>
-                            <h1 >Bulk Prices,<br>Carton Deals</h1>
-                            <p>Become a retailer for exclusive wholesale rates.</p>
-                            <a id="simulateRegisterBtn" href="register.html" class="btn btn-orange uppertext" data-auth="register" title="Signup">Signup Now →</a>
-                        </div>
-
+                    <div class="hero-col retail">
+                        <span class="tag" >RETAIL</span>
+                        <h1>Premium Dry Foods For Your Home</h1>
+                        <p>Single units, fast delivery across Lagos.</p>
+                        <a href="shop.html" class="btn btn-green uppertext">Shop Now →</a>
                     </div>
 
-                </section>
-                
-                <!-- main content -->
-                <section class="main-content">
+                    <div class="hero-col wholesale">
+                        <span class="tag" >B2B WHOLESALE</span>
+                        <h1 >Bulk Prices,<br>Carton Deals</h1>
+                        <p>Become a retailer for exclusive wholesale rates.</p>
+                        <a id="simulateRegisterBtn" href="register.html" class="btn btn-orange uppertext" data-auth="register" title="Signup">Signup Now →</a>
+                    </div>
 
-                    <div class="main-content-inner container">
+                </div>
+
+            </section>
+                
+            <!-- main content -->
+            <section class="main-content">
+
+                <div class="main-content-inner container">
                         
-                        <!-- NEW: CATEGORIES -->
-                        <section class="section category">
+                    <!-- NEW: CATEGORIES -->
+                    <section class="section category">
 
-                            <!-- Categories -->
-                            <h2 class="section-title">Shop by Category</h2>
-                            <div class="cat-grid">
-                                <a href="" class="cat-card" onclick="document.getElementById('page-pdp').checked=true"><span class="icon">🍚</span> Rice</a>
-                                <a href="" class="cat-card" onclick="document.getElementById('page-pdp').checked=true"><span class="icon">🫘</span> Beans</a>
-                                <a href="" class="cat-card" onclick="document.getElementById('page-pdp').checked=true"><span class="icon">🌾</span> Garri</a>
-                            </div>      
+                        <!-- Categories -->
+                        <h2 class="section-title">Shop by Category</h2>
+                        <div class="cat-grid">
+                            <a href="" class="cat-card" onclick="document.getElementById('page-pdp').checked=true"><span class="icon">🍚</span> Rice</a>
+                            <a href="" class="cat-card" onclick="document.getElementById('page-pdp').checked=true"><span class="icon">🫘</span> Beans</a>
+                            <a href="" class="cat-card" onclick="document.getElementById('page-pdp').checked=true"><span class="icon">🌾</span> Garri</a>
+                        </div>      
 
-                        </section>
+                    </section>
 
-                        <!-- NEW: FEATURED PRODUCTS -->
-                        <section class="section featured">
+                    <!-- NEW: FEATURED PRODUCTS -->
+                    <section class="section featured">
 
-                            <h2 class="section-title">Featured Products</h2>
+                        <h2 class="section-title">Featured Products</h2>
 
-                            <div class="featured-grid">
+                        <div class="featured-grid">
 
-                                <!-- Card 1: Rice -->
-                                <div class="product-card featured">
-                                    <div class="img-placeholder">🍚 Product Image</div>
-                                    <div class="card-details">
-                                        <div class="details">
-                                            <h3 class="title">Nutragold Parboiled Nigerian Rice</h3>
-                                            <div class="attrs"><span>5kg</span><span>10kg</span><span>25kg</span><span class="label-50kg">50kg</span></div>
-                                            <p class="price">₦7,000 - ₦59,000</p>
-                                        </div>
-                                        <div class="call-to-act">
-                                            <a href="product-retail.html" class="btn btn-primary">View Product →</a>                               
-                                        </div>
+                            <!-- Card 1: Rice -->
+                            <div class="product-card featured">
+                                <div class="img-placeholder">🍚 Product Image</div>
+                                <div class="card-details">
+                                    <div class="details">
+                                        <h3 class="title">Nutragold Nigerian Rice</h3>
+                                        <div class="attrs"><span>5kg</span><span>10kg</span><span>25kg</span><span class="label-jumbo d-none">Jumbo</span></div>
+                                        <p class="price retail">₦7,000 – ₦59,000</p>
+                                        <p class="price wholesale">₦6,800 – ₦57,500</p>
+                                        <span class="badge badge-orange">Retail Price</span>
+                                    </div>
+                                    <div class="call-to-act">
+                                        <a href="rice.html" class="btn btn-primary">View Product →</a>                               
                                     </div>
                                 </div>
-
-                                <!-- Card 2: Honey Beans -->
-                                <div class="product-card featured">
-                                    <div class="img-placeholder">🫘 Product Image</div>
-                                    <div class="card-details">
-                                        <div class="details">
-                                            <h3 class="title">Nutragold Honey Beans</h3>
-                                            <div class="attrs"><span>5kg</span><span>10kg</span><span>25kg</span><span class="label-jumbo">Jumbo</span></div>
-                                            <p class="price">₦11,000 - ₦83,000</p>
-                                        </div>
-                                        <div class="call-to-act">
-                                            <a href="product-retail.html" class="btn btn-primary">View Product →</a>                               
-                                        </div>                                
-                                    </div>
-                                </div>
-
-                                <!-- Card 3: Brown Beans -->
-                                <div class="product-card featured">
-                                    <div class="img-placeholder">🫘 Product Image</div>
-                                    <div class="card-details">
-                                        <div class="details">
-                                            <h3 class="title">Nutragold Brown Beans</h3>
-                                            <div class="attrs"><span>5kg</span><span>10kg</span><span>25kg</span><span class="label-jumbo">Jumbo</span></div>
-                                            <p class="price">₦11,000 - ₦83,000</p>
-                                        </div>
-                                        <div class="call-to-act">
-                                            <a href="product-retail.html" class="btn btn-primary">View Product →</a>                               
-                                        </div>                                
-                                    </div>
-                                </div>
-
-                                <!-- Card 4: Premium Garri -->
-                                <div class="product-card featured">
-                                    <div class="img-placeholder">🌾Product Image</div>
-                                    <div class="card-details">
-                                        <div class="details">
-                                            <h3 class="title">Nutragold Premium White Garri</h3>
-                                            <div class="attrs"><span>5kg</span><span>10kg</span><span>25kg</span><span class="label-jumbo">Jumbo</span></div>
-                                            <p class="price">₦7,000 -  ₦70,000</p>
-                                        </div>
-                                        <div class="call-to-act">
-                                            <a href="product-retail.html" class="btn btn-primary">View Product →</a>                               
-                                        </div>                                
-                                    </div>
-                                </div>
-
-                                <!-- Card 5: Standard Garri -->
-                                <div class="product-card featured">
-                                    <div class="img-placeholder">🌾Product Image</div>
-                                    <div class="card-details">
-                                        <div class="details">
-                                            <h3 class="title">Nutragold Standard White Garri</h3>
-                                            <div class="attrs"><span>5kg</span><span>10kg</span><span>25kg</span><span class="label-jumbo">Jumbo</span></div>
-                                            <p class="price">₦7,000 -  ₦70,000</p>
-                                        </div>
-                                        <div class="call-to-act">
-                                            <a href="product-retail.html" class="btn btn-primary">View Product →</a>                               
-                                        </div>                                
-                                    </div>
-                                </div>
-
                             </div>
 
-                        </section>
+                            <!-- Card 2: Honey Beans -->
+                            <div class="product-card featured">
+                                <div class="img-placeholder">🫘 Product Image</div>
+                                <div class="card-details">
+                                    <div class="details">
+                                        <h3 class="title">Nutragold Honey Beans</h3>
+                                        <div class="attrs"><span>5kg</span><span>10kg</span><span>25kg</span><span class="label-jumbo d-none">Jumbo</span></div>
+                                        <p class="price retail">₦13,000 – ₦59,000</p>
+                                        <p class="price wholesale">₦12,500 – ₦57,000</p>
+                                        <span class="badge badge-orange">Retail Price</span>
+                                    </div>
+                                    <div class="call-to-act">
+                                        <a href="beans.html" class="btn btn-primary">View Product →</a>                               
+                                    </div>                                
+                                </div>
+                            </div>
 
-                        <!-- NEW: WHY CHOOSE US + WHOLESALE CTA -->
-                        <section class="section proposition">
+                            <!-- Card 3: Brown Beans -->
+                            <div class="product-card featured">
+                                <div class="img-placeholder">🫘 Product Image</div>
+                                <div class="card-details">
+                                    <div class="details">
+                                        <h3 class="title">Nutragold Brown Beans</h3>
+                                        <div class="attrs"><span>5kg</span><span>10kg</span><span>25kg</span><span class="label-jumbo d-none">Jumbo</span></div>
+                                        <p class="price retail">₦11,000 – ₦49,000</p>
+                                        <p class="price wholesale">₦10,500 – ₦47,500</p>
+                                        <span class="badge badge-orange">Retail Price</span>
+                                    </div>
+                                    <div class="call-to-act">
+                                        <a href="beans.html" class="btn btn-primary">View Product →</a>                               
+                                    </div>                                
+                                </div>
+                            </div>
+
+                            <!-- Card 4: Premium Garri -->
+                            <div class="product-card featured">
+                                <div class="img-placeholder">🌾Product Image</div>
+                                <div class="card-details">
+                                    <div class="details">
+                                        <h3 class="title">Nutragold Premium White Garri</h3>
+                                        <div class="attrs"><span>5kg</span><span>10kg</span><span>25kg</span><span class="label-jumbo d-none">Jumbo</span></div>
+                                        <p class="price retail">₦8,000 –  ₦35,000</p>
+                                        <p class="price wholesale">₦7,500 – ₦33,500</p>
+                                        <span class="badge badge-orange">Retail Price</span>
+                                    </div>
+                                    <div class="call-to-act">
+                                        <a href="garri.html" class="btn btn-primary">View Product →</a>                               
+                                    </div>                                
+                                </div>
+                            </div>
+
+                            <!-- Card 5: Standard Garri -->
+                            <div class="product-card featured">
+                                <div class="img-placeholder">🌾Product Image</div>
+                                <div class="card-details">
+                                    <div class="details">
+                                        <h3 class="title">Nutragold Standard White Garri</h3>
+                                        <div class="attrs"><span>5kg</span><span>10kg</span><span>25kg</span><span class="label-jumbo d-none">Jumbo</span></div>
+                                        <p class="price retail">₦6,000 – ₦19,000</p>
+                                        <p class="price wholesale">₦5,500 – ₦17,500</p>
+                                        <span class="badge badge-orange">Retail Price</span>
+                                    </div>
+                                    <div class="call-to-act">
+                                        <a href="garri.html" class="btn btn-primary">View Product →</a>                               
+                                    </div>                                
+                                </div>
+                            </div>
+
+                            <!-- Card 6: Jumbo Honey Beans -->
+                            <div class="product-card wholesale featured">
+                                <div class="img-placeholder">🫘 Product Image</div>
+                                <div class="card-details">
+                                    <div class="details">
+                                        <h3 class="title">Nutragold Honey Beans Jumbo</h3>
+                                        <div class="attrs"><span class="d-none">5kg</span><span class="d-none">10kg</span><span class="d-none">25kg</span><span class="label-jumbo">Jumbo</span></div>
+                                        <p class="price"><!--₦101,000 – -->₦111,000</p>
+                                        <!--<p class="price wholesale">₦12,500 - ₦57,000</p>-->
+                                        <span class="badge badge-orange">Retail Price</span>
+                                    </div>
+                                    <div class="call-to-act">
+                                        <a href="honey-beans-jumbo.html" class="btn btn-primary">View Product →</a>                               
+                                    </div>                                
+                                </div>
+                            </div>
+
+                            <!-- Card 7: Jumbo Brown Beans -->
+                            <div class="product-card wholesales featured">
+                                <div class="img-placeholder">🫘 Product Image</div>
+                                <div class="card-details">
+                                    <div class="details">
+                                        <h3 class="title">Nutragold Brown Beans Jumbo</h3>
+                                        <div class="attrs"><span class="d-none">5kg</span><span class="d-none">10kg</span><span class="d-none">25kg</span><span class="label-jumbo">Jumbo</span></div>
+                                        <p class="price">₦101,000<!-- – ₦111,000--></p>
+                                        <!--<p class="price wholesale">₦10,500 – ₦47,500</p>-->
+                                        <span class="badge badge-orange">Retail Price</span>
+                                    </div>
+                                    <div class="call-to-act">
+                                        <a href="brown-beans-jumbo.html" class="btn btn-primary">View Product →</a>                               
+                                    </div>                                
+                                </div>
+                            </div>
+
+                            <!-- Card 8: Jumbo Garri -->
+                            <div class="product-card wholesale featured">
+                                <div class="img-placeholder">🌾Product Image</div>
+                                <div class="card-details">
+                                    <div class="details">
+                                        <h3 class="title">Nutragold White Garri Jumbo</h3>
+                                        <div class="attrs"><span class="d-none">5kg</span><span class="d-none">10kg</span><span class="d-none">25kg</span><span class="label-jumbo">Jumbo</span><span class="label-premium">Premium</span><span class="label-standard">Standard</span></div>
+                                        <p class="price">₦40,000 – ₦70,000</p>
+                                        <!--<p class="price wholesale">₦5,500 – ₦17,500</p>-->
+                                        <span class="badge badge-orange">Retail Price</span>
+                                    </div>
+                                    <div class="call-to-act">
+                                        <a href="garri-jumbo.html" class="btn btn-primary">View Product →</a>                               
+                                    </div>                                
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </section>
+
+                    <!-- NEW: WHY CHOOSE US + WHOLESALE CTA -->
+                    <section class="section proposition">
                             
-                            <!-- Row 1: Why Choose Us -->
-                            <h2 class="section-title">Why Choose Us</h2>
+                        <!-- Row 1: Why Choose Us -->
+                        <h2 class="section-title">Why Choose Us</h2>
 
-                            <div class="proposition-grid">
+                        <div class="proposition-grid">
 
-                                <div class="proposition-values">
+                            <div class="proposition-values">
 
-                                    <div class="props-card">
-                                        <div class="icon">🚚</div>
-                                        <h4 class="title">Same-Day Delivery</h4>
-                                        <p class="desc">Lagos-wide delivery within hours. Real-time tracking available.</p>
-                                    </div>
-
-                                    <div class="props-card">
-                                        <div class="icon">📦</div>
-                                        <h4 class="ttile">Wholesale Prices</h4>
-                                        <p class="desc">Exclusive B2B rates for registered retailers. Bulk discounts available.</p>
-                                    </div>
-
-                                    <div class="props-card">
-                                        <div class="icon">🛡️</div>
-                                        <h4 class="title">Quality Guaranteed</h4>
-                                        <p class="desc">Sourced from trusted farms. Premium packaging for freshness.</p>
-                                    </div>
-
+                                <div class="props-card">
+                                    <div class="icon">🚚</div>
+                                    <h4 class="title">Same-Day Delivery</h4>
+                                    <p class="desc">Lagos-wide delivery within hours. Real-time tracking available.</p>
                                 </div>
 
-                                <!-- Divider -->
-                                <hr class="proposition-divider">
+                                <div class="props-card">
+                                    <div class="icon">📦</div>
+                                    <h4 class="ttile">Wholesale Prices</h4>
+                                    <p class="desc">Exclusive B2B rates for registered retailers. Bulk discounts available.</p>
+                                </div>
 
-                                <!-- Row 2: Wholesale CTA Banner -->
-                                <div class="proposition-cta">
-
-                                    <!--<span style="display:inline-block; background:#f59e0b; color:#0f172a; padding:2px 14px; border-radius:30px; font-size:0.7rem; font-weight:700; text-transform:uppercase; letter-spacing:0.5px; margin-bottom:4px;">Wholesale Opportunity</span>-->
-                                    <p class="props-tagline">Register as a retailer today and unlock exclusive bulk pricing on all products.</p>
-
-                                    <a id="simulateRegisterBtn" href="register.html" class="btn btn-orange props-btn" data-auth="register">Register Now →</a>
-
+                                <div class="props-card">
+                                    <div class="icon">🛡️</div>
+                                    <h4 class="title">Quality Guaranteed</h4>
+                                    <p class="desc">Sourced from trusted farms. Premium packaging for freshness.</p>
                                 </div>
 
                             </div>
 
-                        </section>
+                            <!-- Divider -->
+                            <hr class="proposition-divider">
 
-                        <!-- NEW: BESTSELLING PRODUCTS-->
-                        <section class="section bestselling">
+                            <!-- Row 2: Wholesale CTA Banner -->
+                            <div class="proposition-cta" style="display: flex;">
 
-                            <!-- Products -->
-                            <h2 class="section-title">Best Selling Products</h2>
+                                <!--<span style="display:inline-block; background:#f59e0b; color:#0f172a; padding:2px 14px; border-radius:30px; font-size:0.7rem; font-weight:700; text-transform:uppercase; letter-spacing:0.5px; margin-bottom:4px;">Wholesale Opportunity</span>-->
+                                <p class="props-tagline">Register as a retailer today and unlock exclusive bulk pricing on all products.</p>
 
-                            <div class="products-grid">
-
-                                <div class="product-card">
-                                    <div class="img-placeholder">📦 Product Image</div>
-                                    <div class="card-details">
-                                        <div class="details">                            
-                                            <h3 class="title">Nutragold Parboiled Nigerian Rice</h3>
-                                            <div class="attrs"><span>5kg</span><span>10kg</span><span>25kg</span><span class="label-50kg">50kg</span></div>
-                                            <div class="price">₦7,000 – ₦59,000</div>
-                                            <span class="badge-green d-none">📦 Wholesale</span>
-                                        </div>
-                                        <div class="call-to-act">
-                                            <a href="product-retail.html" class="btn btn-primary">View Options</a>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="product-card">
-                                    <div class="img-placeholder">📦 Product Image</div>
-                                    <div class="card-details">
-                                        <div class="details">                            
-                                            <h3 class="title">Nutragold Honey Beans</h3>
-                                            <div class="attrs"><span>5kg</span><span>10kg</span><span>25kg</span><span class="label-jumbo">Jumbo</span></div>
-                                            <div class="price">₦11,000 – ₦83,000</div>
-                                            <span class="badge-green d-none">📦 Wholesale</span>
-                                        </div>
-                                        <div class="call-to-act">
-                                            <a href="product-retail.html" class="btn btn-primary">View Options</a>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="product-card">
-                                    <div class="img-placeholder">📦 Product Image</div>
-                                    <div class="card-details">
-                                        <div class="details">                            
-                                            <h3 class="title">Nutragold Premium White Garri</h3>
-                                            <div class="attrs"><span>5kg</span><span>10kg</span><span>25kg</span><span class="label-jumbo">Jumbo</span></div>
-                                            <div class="price">₦7,000 – ₦70,000</div>
-                                            <span class="badge-green d-none">📦 Wholesale</span>
-                                        </div>
-                                        <div class="call-to-act">
-                                            <a href="product-retail.html" class="btn btn-primary">View Options →</a>                               
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="product-card">
-                                    <div class="img-placeholder">📦 Product Image</div>
-                                    <div class="card-details">
-                                        <div class="details">                            
-                                            <h3 class="title">Nutragold Standard White Garri</h3>
-                                            <div class="attrs"><span>5kg</span><span>10kg</span><span>25kg</span><span class="label-jumbo">Jumbo</span></div>
-                                            <div class="price">₦5,000 – ₦40,000</div>
-                                            <span class="badge-orange d-none">🔒 Login for Wholesale</span>
-                                        </div>
-                                        <div class="call-to-act">
-                                            <a href="product-retail.html" class="btn btn-primary">View Options →</a>                               
-                                        </div>
-                                    </div>
-                                </div>
+                                <a id="simulateRegisterBtn" href="register.html" class="btn btn-orange props-btn" data-auth="register">Register Now →</a>
 
                             </div>
 
-                        </section>
+                        </div>
 
-                    </div>
+                    </section>
 
-                </section>
+                    <!-- NEW: BESTSELLING PRODUCTS-->
+                    <section class="section bestselling">
+
+                        <!-- Products -->
+                        <h2 class="section-title">Best Selling Products</h2>
+
+                        <div class="products-grid">
+
+                            <!-- Card 1: Rice -->
+                            <div class="product-card">
+                                <div class="img-placeholder">🍚 Product Image</div>
+                                <div class="card-details">
+                                    <div class="details">                            
+                                        <h3 class="title">Nutragold Nigerian Rice</h3>
+                                        <div class="attrs"><span class="d-none">5kg</span><span class="d-none">10kg</span><span class="d-none">25kg</span><span class="label-50kg">50kg</span></div>
+                                        <p class="price retail"><!--₦7,000 – -->₦59,000</p>
+                                        <p class="price wholesale"><!--₦6,800 – -->₦57,500</p>
+                                        <span class="badge badge-orange">Retail Price</span>
+                                    </div>
+                                    <div class="call-to-act">
+                                        <a href="rice.html" class="btn btn-primary">View Options →</a>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Card 2: Honey Beans -->
+                            <div class="product-card">
+                                <div class="img-placeholder">🫘 Product Image</div>
+                                <div class="card-details">
+                                    <div class="details">                            
+                                        <h3 class="title">Nutragold Honey Beans</h3>
+                                        <div class="attrs"><span class="d-none">5kg</span><span class="d-none">10kg</span><span>25kg</span><span class="label-jumbo d-none">Jumbo</span></div>
+                                        <p class="price retail"><!--₦13,000 – -->₦59,000</p>
+                                        <p class="price wholesale"><!--₦12,500 – -->₦57,500</p>
+                                        <span class="badge badge-orange">Retail Price</span>
+                                    </div>
+                                    <div class="call-to-act">
+                                        <a href="beans.html" class="btn btn-primary">View Options →</a>
+                                    </div>
+                                </div>
+                            </div>
+                        
+                            <!-- Card 3: Brown Beans
+                            <div class="product-card">
+                                <div class="img-placeholder">🫘 Product Image</div>
+                                <div class="card-details">
+                                    <div class="details">
+                                        <h3 class="title">Nutragold Brown Beans</h3>
+                                        <div class="attrs"><span>5kg</span><span>10kg</span><span>25kg</span><span class="label-jumbo">Jumbo</span></div>
+                                        <p class="price retail">₦11,000 – ₦49,000</p>
+                                        <p class="price wholesale">₦10,500 – ₦47,500</p>
+                                        <span class="badge badge-orange">Retail Price</span>
+                                    </div>
+                                    <div class="call-to-act">
+                                        <a href="beans.html" class="btn btn-primary">View Options →</a>
+                                    </div>
+                                </div>
+                            </div> -->
+
+                            <!-- Card 4: Premium Garri -->
+                            <div class="product-card">
+                                <div class="img-placeholder">🌾 Product Image</div>
+                                <div class="card-details">
+                                    <div class="details">                            
+                                        <h3 class="title">Nutragold Premium White Garri</h3>
+                                        <div class="attrs"><span class="d-none">5kg</span><span>10kg</span><span class="d-none">25kg</span><span class="label-jumbo d-none">Jumbo</span></div>
+                                        <p class="price retail"><!--₦8,000 – -->₦15,500</p>
+                                        <p class="price wholesale"><!--₦7,500 - -->₦14,750</p>
+                                        <span class="badge badge-orange">Retail Price</span>
+                                    </div>
+                                    <div class="call-to-act">
+                                        <a href="garri.html" class="btn btn-primary">View Options →</a>                               
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Card 5: Standard Garri -->
+                            <div class="product-card">
+                                <div class="img-placeholder">🌾 Product Image</div>
+                                <div class="card-details">
+                                    <div class="details">                            
+                                        <h3 class="title">Nutragold Standard White Garri</h3>
+                                        <div class="attrs"><span>5kg</span><span>10kg</span><span>25kg</span><span class="label-jumbo d-none">Jumbo</span></div>
+                                        <p class="price retail">₦6,000<!-- – ₦19,000---></p>
+                                        <p class="price wholesale">₦5,500<!-- – ₦17,500--></p>
+                                        <span class="badge badge-orange">Retail Price</span>
+                                    </div>
+                                    <div class="call-to-act">
+                                        <a href="garri.html" class="btn btn-primary">View Options →</a>                               
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </section>
+
+                </div>
+
+            </section>
 
         </main>
-
+        
     <div id="footer-placeholder"></div>
     
     <!-- A single, reusable script -->

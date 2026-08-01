@@ -3,9 +3,9 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Foodcart Stores – Interactive Mockup</title>
+        <title>Foodcart Stores – Nutragold Beans</title>
         <link rel="stylesheet" href="assets/mockup.css?v=2">
-        <script src="assets/mockup.js?v=2"></script>    
+        <script src="assets/mockup-2.js?v=2"></script>    
     </head>
 
     <div id="header-placeholder" class=" sticky-top"></div>
@@ -16,13 +16,6 @@
             <!-- PAGE: PRODUCT DETAIL (PDP) -->
             <!-- ============================================ -->
             <section class="main-content">
-
-                <!-- Toggle Switch (Retail / Wholesale) -->
-                <!--<div class="container" style="display: flex; align-items:center; gap:12px; background:#f1f5f9; padding:8px 16px; border-radius:30px; width:fit-content; margin-bottom:20px; border:1px solid #e2e8f0;">
-                    <span style="font-weight:600; font-size:0.85rem; color:#475569;">View as:</span>
-                    <button class="pdp-toggle-btn active" data-view="retail" style="background:#0f172a; color:white; border:none; padding:4px 16px; border-radius:20px; font-weight:600; font-size:0.85rem; cursor:pointer;">🛒 Retail</button>
-                    <button class="pdp-toggle-btn" data-view="wholesale" style="background:transparent; color:#475569; border:none; padding:4px 16px; border-radius:20px; font-weight:600; font-size:0.85rem; cursor:pointer;">📦 Wholesale</button>
-                </div>-->
 
                 <div class="main-content-inner container">
 
@@ -40,6 +33,7 @@
                                 </picture>
 
                                 <span class="label">Photo Gallery</span>
+
                                 <div class="gallery-carousel">
                                     <span class="thumbnail"></span>
                                     <span class="thumbnail"></span>
@@ -55,25 +49,28 @@
                         <!-- Summary -->
                         <div class="pdp-summary">
 
-                            <h1 class="title">Nutragold Parboiled Nigerian Rice</h1>
+                            <h2 class="title">Nutragold Stone Free Beans</h2>
 
                             <div class="pdp-price-meta">
 
                                 <div class="meta-inner">
 
                                     <!-- ===== RETAIL PRICE (Visible in both views, but styled differently) ===== -->
-                                    <div class="price d-none">₦7,000.00 – ₦59,000.00 <span class="label">Retail Price</span></div>
+                                    <div class="price retail" style="display: flex;">₦11,000.00 – ₦59,000.00 <span class="label">Retail Price</span></div>
 
                                         <!-- ===== WHOLESALE PRICE (Prominent) ===== -->
-                                    <div class="price">₦6,800.00 – ₦52,000.00 <span class="label">Wholesale Price</span></div>
+                                    <div class="price wholesale" style="display: none;">₦10,500.00 – ₦57,500.00 <span class="label">Wholesale Price</span></div>
                                     
+                                    <!-- ===== RETAIL STOCK (Simpler) ===== -->
+                                    <span class="stock-status out-stock d-none" >❌ Out of Stock</span>
+                                        
                                     <!-- ===== RETAIL STOCK (Simpler) ===== -->
                                     <span class="stock-status in-stock">✅ In Stock</span>
 
                                 </div>
 
                                 <!-- ===== WHOLESALE PROMPT (Retail only) ===== -->
-                                <span class="wholesale-prompt d-none">Want wholesale prices?!&nbsp;<a href="#" class="wholesale-register">Register Now</a>&nbsp;for a Retail Account.</span> 
+                                <span class="wholesale-prompt">Want wholesale prices?!&nbsp;<a id="simulateLoginBtn" href="login.html" class="wholesale-register" data-auth="login">Login</a>&nbsp;or&nbsp;<a id="simulateRegisterBtn" href="register.html" class="wholesale-register" data-auth="register">Register Now</a>&nbsp;for a Retail Account.</span> 
 
                             </div>
 
@@ -82,7 +79,7 @@
                                 <h4 class="title">Quick Overview</h4>
                                 <p class="short-desc">Premium stone-free rice. Sourced from reputable farms. Available in retail and wholesale packs. Perfect for households and food businesses.</p>
                             </div>
-                            
+                                
                             <!-- ===== STOCK SELECTION ===== -->
                             <div class="variant-selection">
 
@@ -92,21 +89,25 @@
                                     <label class="label">Package Size:</label>
 
                                     <div class="selector-wrap">
-                                                
-                                        <select id="retail" name="weight-price" title="weight-price" class="select-retail d-none">
+                                                    
+                                        <select id="retail" name="weight-price" title="weight-price" class="select retail" style="display: flex;">
                                             <option value="">Select an Option</option>
-                                            <option value="5kg" selected>5kg – ₦7,000 (Retail)</option>
-                                            <option value="10kg">10kg – ₦13,000 (Retail)</option>
-                                            <option value="25kg">25kg – ₦29,000 (Retail)</option>
-                                            <option value="50kg">50kg Bag – ₦59,000 (Retail)</option>
+                                            <option value="5kg-brown" selected>5kg – ₦11,000 (Brown)</option>
+                                            <option value="5kg-honey">5kg – ₦13,000 (Honey)</option>
+                                            <option value="10kg-brown">10kg – ₦21,000 (Brown)</option>
+                                            <option value="10kg-honey">10kg – ₦24,500 (Honey)</option>
+                                            <option value="25kg-brown">25kg – ₦49,000 (Brown)</option>
+                                            <option value="50kg-honey">25kg – ₦59,000 (Honey)</option>
                                         </select>
 
-                                        <select id="wholesale" name="weight-price" title="weight-price" class="select-wholesale">
+                                        <select id="wholesale" name="weight-price" title="weight-price" class="select wholesale" style="display: none;">
                                             <option value="">Select an Option</option>
-                                            <option value="5kg" selected>5kg –  ₦6,800 (Wholesale)</option>
-                                            <option value="10kg">10kg – ₦12,000 (Wholesale)</option>
-                                            <option value="25kg">25kg –  ₦26,000 (Wholesale)</option>
-                                            <option value="50kg">50kg Bag – ₦52,000 (Wholesale)</option>
+                                            <option value="5kg-brown" selected>5kg – ₦10,500 (Brown)</option>
+                                            <option value="5kg-honey">5kg – ₦12,500 (Honey)</option>
+                                            <option value="10kg-brown">10kg – ₦20,000 (Brown)</option>
+                                            <option value="10kg-honey">10kg – ₦23,000 (Honey)</option>
+                                            <option value="25kg-brown">25kg – ₦47,500 (Brown)</option>
+                                            <option value="50kg-honey">25kg – ₦57,500 (Honey)</option>
                                         </select>
 
                                     </div>
@@ -114,19 +115,22 @@
                                 </div>
 
                                 <!-- ===== STOCK STATUS (Wholesale-specific) ===== -->
-                                <span class="variant-unit-price">₦6,800.00</span>
+                                <span class="variant-unit-price retail" style="display: flex;">₦11,000.00</span>
+                                    
+                                <!-- ===== STOCK STATUS (Wholesale-specific) ===== -->
+                                <span class="variant-unit-price wholesale" style="display: none;">₦10,500.00</span>
 
                                 <!-- ===== STOCK STATUS (Wholesale-specific) ===== -->
                                 <span class="variant-unit-count">250 in stock</span>
-                                
+                                    
                                 <!-- ===== SKU CODE (Wholesale-specific) ===== -->
-                                <span class="sku">SKU: RICE-001</span>            
+                                <span class="sku">SKU: BEAN-001</span>  
 
                                 <!-- ===== QUANTITY + ADD TO CART (Retail vs Wholesale) ===== -->
                                 <div class="qty-add">
 
                                     <!-- Retail QTY (default 1) -->
-                                    <div class="qty-input retail d-none">
+                                    <div class="qty-input retail" style="display: none;">
 
                                         <label for="qty-input" class="label">Qty:</label>
                                         <input name="qty-input" type="number" value="1" min="1" title="qty-count">
@@ -135,15 +139,25 @@
                                     </div>
 
                                     <!-- Wholesale QTY (default 10) -->
-                                    <div class="qty-input wholesale">
+                                    <div class="qty-input wholesale" style="display: none;">
 
                                         <label for="qty-input" class="label">Qty:</label>
                                         <input name="qty-input" type="number" value="10" min="10" step="1" title="qty-count">
                                         <button type="submit" class="btn btn-primary">Add Bulk to  Cart</button>
-                                        
+                                            
                                     </div>
 
-                                    <span class="moq">Minimum Order Quantity (MoQ): 10 bags</span>
+                                    <!-- QTY (default 1/10) -->
+                                    <div class="qty-input">
+
+                                        <label for="qty-input" class="label">Qty:</label>
+                                        <input class="qty-count retail" name="qty-input" type="number" value="1" min="1" step="1" title="qty-count"  style="display: flex;">
+                                        <input class="qty-count wholesale" name="qty-input" type="number" value="10" min="10" step="1" title="qty-count" style="display: none;">
+                                        <button type="submit" class="btn btn-green">Add to Cart</button>
+
+                                    </div>
+
+                                    <span class="moq wholesale" style="display: none;">Minimum Order Quantity (MoQ): 10 bags</span>
 
                                 </div>
 
@@ -153,11 +167,11 @@
                             <div class="pdp-summary-notes">
 
                                 <!-- ===== WHOLESALE DELIVERY NOTE ===== -->
-                                <span class="delivery-note wholesale">
+                                <span class="delivery-note wholesale" style="display: none;">
                                     🚚&nbsp;<strong>Free delivery</strong>&nbsp;on wholesale orders above ₦100,000 within Lagos.
                                 </span>
 
-                                <span class="delivery-note retail d-none">
+                                <span class="delivery-note retail" style="display: flex;">
                                     🚚 Same-day delivery within Lagos. Fee calculated at checkout.
                                 </span>     
 
@@ -167,7 +181,6 @@
 
                     </div>
 
-
                     <!-- ===== PRODUCT SUMMARY ===== -->
                     <div class="product-collateral">
 
@@ -176,7 +189,7 @@
                             <span role="tab" class="additionals-tab">Additional Information</span>
                             <span role="tab" class="reviews-tab">Reviews</span>
                         </div> 
-                        
+                            
                         <div class="collateral-pane description-pane">
 
                             <h4>Product Description</h4>
@@ -185,8 +198,8 @@
                                 <p>Premium stone-free rice. Sourced from reputable farms. Available in retail and wholesale packs. Perfect for households and food businesses.</p>
                             </div>
 
-                        </div> 
-                        
+                        </div>
+                            
                         <div class="collateral-pane additionals-pane">
 
                             <h4>Nutritional Facts</h4>
@@ -196,7 +209,7 @@
                             </div>
 
                         </div> 
-                        
+                            
                         <div class="collateral-pane reviews-pane">
 
                             <h4>Product Reviews</h4>
@@ -206,95 +219,105 @@
                             </div>
 
                         </div> 
-                        
-                    </div>
                             
+                    </div>
+                                
                     <!-- NEW: BESTSELLING PRODUCTS-->
-                    <div class="section bestselling">
+                    <section class="section bestselling">
 
                         <!-- Products -->
-                        <h2 class="section-title">Best Selling Products</h2>
+                        <h2 class="section-title">Featured Products</h2>
 
                         <div class="products-grid">
 
-                            <!--<div class="product-card">
-                                <div class="img-placeholder">📦 Product Image</div>
-                                <div class="card-details">
-                                    <div class="details">                            
-                                        <h3 class="title">Nutragold Parboiled Nigerian Rice</h3>
-                                        <div class="attrs"><span>5kg</span><span>10kg</span><span>25kg</span><span class="label-50kg">50kg</span></div>
-                                        <div class="price">₦7,000 – ₦59,000</div>
-                                        <span class="badge-green">📦 Wholesale</span>
-                                    </div>
-                                    <div class="call-to-act">
-                                        <a href="product-wholesale.html" class="btn btn-primary">View Options</a>
-                                    </div>
-                                </div>
-                            </div>-->
-
+                            <!-- Card 1: Rice -->
                             <div class="product-card">
-                                <div class="img-placeholder">📦 Product Image</div>
+                                <div class="img-placeholder">🍚 Product Image</div>
                                 <div class="card-details">
                                     <div class="details">                            
-                                        <h3 class="title">Nutragold Honey Beans</h3>
-                                        <div class="attrs"><span>5kg</span><span>10kg</span><span>25kg</span><span class="label-jumbo">Jumbo</span></div>
-                                        <div class="price">₦11,000 – ₦83,000</div>
-                                        <span class="badge-green">📦 Wholesale</span>
+                                        <h3 class="title">Nutragold Nigerian Rice</h3>
+                                        <div class="attrs"><span>5kg</span><span>10kg</span><span>25kg</span><span class="label-jumbo d-none">Jumbo</span></div>
+                                        <p class="price retail">₦7,000 - ₦59,000</p>
+                                        <p class="price wholesale">₦6,800 - ₦57,500</p>
+                                        <span class="badge badge-orange">Retail Price</span>
                                     </div>
                                     <div class="call-to-act">
-                                        <a href="product-wholesale.html" class="btn btn-primary">View Options</a>
+                                        <a href="rice.html" class="btn btn-primary">View Options →</a>
                                     </div>
                                 </div>
                             </div>
 
+                            <!-- Card 2: Honey Beans -->
                             <div class="product-card">
-                                <div class="img-placeholder">📦</div>
+                                <div class="img-placeholder">🫘 Product Image</div>
+                                <div class="card-details">
+                                    <div class="details">
+                                        <h3 class="title">Nutragold Honey Beans</h3>
+                                        <div class="attrs"><span>5kg</span><span>10kg</span><span>25kg</span><span class="label-jumbo d-none">Jumbo</span></div>
+                                        <p class="price retail">₦13,000 – ₦59,000</p>
+                                        <p class="price wholesale">₦12,500 - ₦57,000</p>
+                                        <span class="badge badge-orange">Retail Price</span>
+                                    </div>
+                                    <div class="call-to-act">
+                                        <a href="beans.html" class="btn btn-primary">View Options →</a>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Card 3: Brown Beans
+                            <div class="product-card">
+                                <div class="img-placeholder">🫘 Product Image</div>
                                 <div class="card-details">
                                     <div class="details">
                                         <h3 class="title">Nutragold Brown Beans</h3>
-                                        <div class="attrs"><span>5kg</span><span>10kg</span><span>25kg</span><span class="label-jumbo">Jumbo</span></div>
-                                        <div class="price">₦10,000 – ₦72,000</div>
-                                        <span class="badge-green">📦 Wholesale</span>
+                                        <div class="attrs"><span>5kg</span><span>10kg</span><span>25kg</span><span class="label-jumbo d-none">Jumbo</span></div>
+                                        <p class="price retail">₦11,000 - ₦49,000</p>
+                                        <p class="price wholesale">₦10,500 - ₦47,500</p>
+                                        <span class="badge badge-orange">Retail Price</span>
                                     </div>
                                     <div class="call-to-act">
-                                        <a href="product-wholesale.html" class="btn btn-primary" onclick="document.getElementById('page-pdp').checked=true">View Options</a>
+                                        <a href="beans.html" class="btn btn-primary">View Options →</a>
                                     </div>
                                 </div>
-                            </div>
+                            </div> -->
 
+                            <!-- Card 4: Premium Garri-->
                             <div class="product-card">
-                                <div class="img-placeholder">📦 Product Image</div>
+                                <div class="img-placeholder">🌾Product Image</div>
                                 <div class="card-details">
-                                    <div class="details">                            
+                                    <div class="details">
                                         <h3 class="title">Nutragold Premium White Garri</h3>
-                                        <div class="attrs"><span>5kg</span><span>10kg</span><span>25kg</span><span class="label-jumbo">Jumbo</span></div>
-                                        <div class="price">₦7,000 – ₦70,000</div>
-                                        <span class="badge-green">📦 Wholesale</span>
+                                        <div class="attrs"><span>5kg</span><span>10kg</span><span>25kg</span><span class="label-jumbo d-none">Jumbo</span></div>
+                                        <p class="price retail" style="display: flex;">₦8,000 -  ₦35,000</p>
+                                        <p class="price wholesale">₦7,500 -  ₦33,500</p>
+                                        <span class="badge badge-orange">Retail Price</span>
                                     </div>
                                     <div class="call-to-act">
-                                        <a href="product-wholesale.html" class="btn btn-primary">View Options →</a>                               
+                                        <a href="garri.html" class="btn btn-primary">View Options →</a>
                                     </div>
                                 </div>
                             </div>
 
+                            <!-- Card 5: Standard Garri -->
                             <div class="product-card">
-                                <div class="img-placeholder">📦 Product Image</div>
+                                <div class="img-placeholder">🌾Product Image</div>
                                 <div class="card-details">
-                                    <div class="details">                            
+                                    <div class="details">
                                         <h3 class="title">Nutragold Standard White Garri</h3>
-                                        <div class="attrs"><span>5kg</span><span>10kg</span><span>25kg</span><span class="label-jumbo">Jumbo</span></div>
-                                        <div class="price">₦5,000 – ₦40,000</div>
-                                        <span class="badge-orange">🔒 Login for Wholesale</span>
+                                        <div class="attrs"><span>5kg</span><span>10kg</span><span>25kg</span><span class="label-jumbo d-none">Jumbo</span></div>
+                                        <p class="price retail">₦6,000 – ₦19,000</p>
+                                        <p class="price wholesale">₦5,500 -  ₦17,500</p>
+                                        <span class="badge badge-orange">Retail Price</span>
                                     </div>
                                     <div class="call-to-act">
-                                        <a href="product-wholesale.html" class="btn btn-primary">View Options →</a>                               
+                                        <a href="garri.html" class="btn btn-primary">View Options →</a>
                                     </div>
                                 </div>
                             </div>
 
                         </div>
 
-                    </div>
+                    </section>
 
                 </div>
 
@@ -307,4 +330,4 @@
     <!-- A single, reusable script -->
     <script src="loader.js"></script>
 
-</html>    
+</html>

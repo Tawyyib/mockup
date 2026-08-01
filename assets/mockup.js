@@ -448,6 +448,7 @@
 // ============================================
 // 5. VIEW MANAGER – Supports Login/Register Success
 // ============================================
+/*
 (function() {
 
     console.log('🔍 View manager loading...');
@@ -478,7 +479,9 @@
 
             login: 'authViewLogin',
             register: 'authViewRegister',
-            success: 'authViewSuccess'
+            success: 'authViewSuccess',
+            orderSuccess: 'authViewOrderSuccess',
+            orderError: 'authViewOrderError'
 
         };
 
@@ -543,6 +546,38 @@
 
         }
 
+        // ---- Show order success ----
+        window.showOrderSuccess = function(orderData) {
+
+            // Update order details
+            const orderNumber = document.getElementById('orderNumber');
+            if (orderNumber) orderNumber.textContent = orderData.orderNumber || '#ORD-2026-001';
+            
+            const orderTotal = document.getElementById('orderTotal');
+            if (orderTotal) orderTotal.textContent = orderData.total || '₦97,700';
+            
+            const orderDelivery = document.getElementById('orderDelivery');
+            if (orderDelivery) orderDelivery.textContent = orderData.delivery || 'Lagos (Ikeja) – Express';
+            
+            const orderETA = document.getElementById('orderETA');
+            if (orderETA) orderETA.textContent = orderData.eta || 'Today, 5:00 PM';
+            
+            const customerName = document.getElementById('orderCustomerName');
+            if (customerName) customerName.textContent = orderData.customerName || 'Retailer';
+            
+            showAuthView('orderSuccess');
+
+        };
+
+        // ---- Show order error ----
+        window.showOrderError = function(errorMessage) {
+
+            const msgEl = document.getElementById('orderErrorMessage');
+            if (msgEl) msgEl.textContent = errorMessage || 'Payment verification failed. Please try again.';
+            showAuthView('orderError');
+
+        };        
+
         // Open the overlay
         if (typeof window.openAuthOverlay === 'function') {
 
@@ -554,7 +589,151 @@
 
     window.showAuthView = showAuthView;
     console.log('✅ View manager ready.');
-    console.log('👉 Use showAuthView("login"), showAuthView("register"), or showAuthView("success", "login", "Adeola Foods")');
+    console.log('👉 Use showAuthView("login"), showAuthView("register"), showAuthView("success"), showAuthView("orderSuccess"), or showAuthView("orderError"), "login", "Adeola Foods")');
+
+})();
+*/
+
+// ============================================
+// VIEW MANAGER – Supports Login/Register + Order Success/Error
+// ============================================
+(function() {
+
+    console.log('🔍 View manager loading...');
+
+    // ---- Core show function ----
+    function showAuthView(view, authStatus, businessName) {
+
+        console.log(`📄 Showing view: ${view} (${authStatus || 'default'})`);
+
+        const allViews = document.querySelectorAll('.auth-view');
+        
+        if (allViews.length === 0) {
+            console.warn('⚠️ No .auth-view elements found. Retrying...');
+            setTimeout(() => showAuthView(view, authStatus, businessName), 500);
+            return;
+        }
+
+        // Hide all views
+        allViews.forEach(el => {
+            el.style.display = 'none';
+        });
+
+        // Show the target view
+        const viewMap = {
+            login: 'authViewLogin',
+            register: 'authViewRegister',
+            success: 'authViewSuccess',
+            orderSuccess: 'authViewOrderSuccess',
+            orderError: 'authViewOrderError'
+        };
+
+        const target = document.getElementById(viewMap[view]);
+        if (target) {
+            target.style.display = 'flex';
+            console.log(`✅ Showing: ${target.id}`);
+        } else {
+            console.warn(`⚠️ View "${view}" not found.`);
+            return;
+        }
+
+        // ---- If success view, show appropriate message ----
+        if (view === 'success') {
+            const loginElements = target.querySelectorAll('.login');
+            const registerElements = target.querySelectorAll('.register');
+
+            if (authStatus === 'login') {
+                loginElements.forEach(el => el.style.display = 'flex');
+                registerElements.forEach(el => el.style.display = 'none');
+                console.log('✅ Showing login success message.');
+            } else if (authStatus === 'register') {
+                loginElements.forEach(el => el.style.display = 'none');
+                registerElements.forEach(el => el.style.display = 'flex');
+                console.log('✅ Showing registration success message.');
+            }
+
+            // Update business name
+            if (businessName) {
+                const nameEls = target.querySelectorAll('#successBusinessName');
+                nameEls.forEach(el => {
+                    el.innerHTML = `Welcome, <strong>${businessName}</strong>!`;
+                });
+                console.log(`✅ Updated business name to: ${businessName}`);
+            }
+
+            // Activate wholesale mode
+            if (typeof window.toggleWholesaleMode === 'function') {
+                window.toggleWholesaleMode(true);
+            }
+
+            localStorage.setItem('wholesaleMode', 'true');
+            localStorage.setItem('businessName', businessName || 'Retailer');
+        }
+
+        // ---- Ensure overlay is opened ----
+        if (typeof window.openAuthOverlay === 'function') {
+            window.openAuthOverlay();
+        } else {
+            // Fallback: manually open overlay
+            console.warn('⚠️ openAuthOverlay not defined – using fallback.');
+            const backdrop = document.getElementById('authBackdrop');
+            if (backdrop) {
+                backdrop.style.display = 'flex';
+                backdrop.classList.add('show');
+                document.body.style.overflow = 'hidden';
+            }
+            const content = document.getElementById('authContent');
+            if (content) {
+                content.style.display = 'block';
+                content.style.visibility = 'visible';
+                content.style.opacity = '1';
+            }
+        }
+
+    }
+
+    // ---- ORDER SUCCESS (Now globally accessible) ----
+    window.showOrderSuccess = function(orderData) {
+        console.log('🎉 showOrderSuccess called:', orderData);
+
+        // Update order details
+        const orderNumber = document.getElementById('orderNumber');
+        if (orderNumber) orderNumber.textContent = orderData.orderNumber || '#ORD-2026-001';
+        
+        const orderTotal = document.getElementById('orderTotal');
+        if (orderTotal) orderTotal.textContent = orderData.total || '₦97,700';
+        
+        const orderDelivery = document.getElementById('orderDelivery');
+        if (orderDelivery) orderDelivery.textContent = orderData.delivery || 'Lagos (Ikeja) – Express';
+        
+        const orderETA = document.getElementById('orderETA');
+        if (orderETA) orderETA.textContent = orderData.eta || 'Today, 5:00 PM';
+        
+        const customerName = document.getElementById('orderCustomerName');
+        if (customerName) customerName.textContent = orderData.customerName || 'Retailer';
+        
+        // Show the view
+        showAuthView('orderSuccess');
+    };
+
+    // ---- ORDER ERROR (Now globally accessible) ----
+    window.showOrderError = function(errorMessage) {
+        console.log('❌ showOrderError called:', errorMessage);
+
+        const msgEl = document.getElementById('orderErrorMessage');
+        if (msgEl) msgEl.textContent = errorMessage || 'Payment verification failed. Please try again.';
+        
+        // Show the view
+        showAuthView('orderError');
+    };
+
+    // ---- Expose showAuthView globally ----
+    window.showAuthView = showAuthView;
+
+    console.log('✅ View manager ready.');
+    console.log('👉 Use showAuthView("login"), showAuthView("register"), showAuthView("success", "login", "Adeola Foods")');
+    console.log('👉 Use showOrderSuccess({ orderNumber: "...", total: "...", ... })');
+    console.log('👉 Use showOrderError("Error message")');
 
 })();
 
@@ -718,7 +897,78 @@
 })();
 
 // ============================================
-// WHOLESALE MODE TOGGLE (Dynamic – Works with Injected Header)
+// 9. ORDER HANDLERS
+// ============================================
+(function() {
+
+    window.handleOrderContinueShopping = function() {
+
+        if (typeof window.closeAuthOverlay === 'function') {
+
+            window.closeAuthOverlay();
+
+        }
+
+        window.location.href = 'shop.html';
+
+    };
+
+    window.handleOrderViewHistory = function() {
+
+        if (typeof window.closeAuthOverlay === 'function') {
+
+            window.closeAuthOverlay();
+
+        }
+
+        alert('📊 Orders page coming soon!');
+        window.location.href = 'index.html';
+
+    };
+
+    window.handleOrderDownloadInvoice = function() {
+
+        alert('📄 Invoice download coming soon!');
+
+    };
+
+    window.handleOrderRetry = function() {
+
+        if (typeof window.closeAuthOverlay === 'function') {
+
+            window.closeAuthOverlay();
+
+        }
+
+        // Return to checkout
+        window.location.href = 'checkout.html';
+
+    };
+
+    window.handleOrderContactSupport = function() {
+
+        alert('📞 Support: support@foodcart.com | +234 800 123 4567');
+
+    };
+
+    window.handleOrderReturnToCart = function() {
+
+        if (typeof window.closeAuthOverlay === 'function') {
+
+            window.closeAuthOverlay();
+
+        }
+
+        window.location.href = 'cart.html';
+
+    };
+
+    console.log('✅ Order handlers ready.');
+
+})();
+
+// ============================================
+// 11. WHOLESALE MODE TOGGLE (Event-Driven)
 // ============================================
 (function() {
 
@@ -726,7 +976,6 @@
 
     let isWholesale = false;
 
-    // ---- Helper to get elements dynamically ----
     function getElements() {
         return {
             logoutDisplay: document.getElementById('logoutDisplay'),
@@ -737,26 +986,21 @@
     }
 
     window.handleLogout = function() {
-
-        console.log('🔓 Logout called (inline fallback).');
-        // Toggle wholesale mode off
+        console.log('🔓 Logout called.');
         if (typeof window.toggleWholesaleMode === 'function') {
             window.toggleWholesaleMode(false);
         }
-        // Show the profile dropdown again
         const profile = document.getElementById('user-profile');
         if (profile) profile.style.display = 'block';
-        // Close overlay if open
         if (typeof window.closeAuthOverlay === 'function') {
             window.closeAuthOverlay();
         }
-        // Reset UI without reload
         console.log('✅ Logout complete – retail mode restored.');
-
     };
 
-    // ---- Toggle wholesale mode (exposed globally) ----
+    // ---- Toggle wholesale mode ----
     window.toggleWholesaleMode = function(enable, businessName) {
+        
         isWholesale = enable;
         window.isWholesaleActive = enable;
 
@@ -764,40 +1008,37 @@
 
         const els = getElements();
 
-        // 1. Toggle price displays
-        document.querySelectorAll('.price-retail, .wholesale-prompt, .delivery-note-retail, .qty-retail, .stock-retail')
-            .forEach(el => el.style.display = enable ? 'none' : 'block');
+        // Toggle price displays
+        document.querySelectorAll('.price.retail, .wholesale-prompt, .proposition-cta, .proposition-divider, .select.retail, .variant-unit-price.retail, .qty-count.retail, .stock-retail, .delivery-note.retail')
+            .forEach(el => el.style.display = enable ? 'none' : 'flex');
 
-        document.querySelectorAll('.price-wholesale, .delivery-note-wholesale, .qty-wholesale, .stock-wholesale')
-            .forEach(el => el.style.display = enable ? 'block' : 'none');
+        document.querySelectorAll('.price.wholesale, select.wholesale, .variant-unit-price.wholesale, .qty-count.wholesale, .stock-wholesale, .moq, .delivery-note.wholesale')
+            .forEach(el => el.style.display = enable ? 'flex' : 'none');
 
-        // 2. Toggle wholesale badges
+        // Toggle badges
         document.querySelectorAll('.badge-orange').forEach(el => {
-            el.textContent = enable ? '📦 Wholesale Price' : '🔒 Login for Wholesale';
+            el.textContent = enable ? 'Wholesale Price' : 'Retail Price';
             el.className = enable ? 'badge-green' : 'badge-orange';
         });
 
-        // 3. Toggle logout display
+        // Toggle logout display
         if (els.logoutDisplay) {
             els.logoutDisplay.style.display = enable ? 'flex' : 'none';
-            console.log(`   logoutDisplay display set to: ${enable ? 'flex' : 'none'}`);
-        } else {
-            console.warn('⚠️ logoutDisplay not found in DOM.');
         }
 
-        // 4. Toggle profile dropdown
+        // Toggle profile dropdown
         if (els.profile) {
             els.profile.style.display = enable ? 'none' : 'block';
         }
 
-        // 5. Update cart badge
+        // Update cart badge
         const cartBadge = document.querySelector('.cart-badge');
         if (cartBadge) {
             cartBadge.textContent = enable ? 'W' : '2';
             cartBadge.style.background = enable ? '#16a34a' : '#f59e0b';
         }
 
-        // 6. Update hero tags
+        // Update hero tags
         const heroCols = document.querySelectorAll('.hero-col .tag');
         if (heroCols.length >= 2) {
             if (enable) {
@@ -815,7 +1056,7 @@
             }
         }
 
-        // 7. Update business name
+        // Update business name
         if (enable && els.businessNameDisplay) {
             const name = businessName || localStorage.getItem('businessName') || 'Retailer';
             els.businessNameDisplay.textContent = name;
@@ -823,24 +1064,27 @@
             els.businessNameDisplay.textContent = 'Retailer';
         }
 
-        // 8. Store state in localStorage
+        // Store state
         if (enable) {
             localStorage.setItem('wholesaleMode', 'true');
-            if (businessName) {
-                localStorage.setItem('businessName', businessName);
-            }
+            if (businessName) localStorage.setItem('businessName', businessName);
         } else {
             localStorage.removeItem('wholesaleMode');
             localStorage.removeItem('businessName');
         }
 
+        // Dispatch event for cart and other modules
+        document.dispatchEvent(new CustomEvent('wholesaleModeChanged', {
+            detail: { enabled: enable, businessName: businessName || '' }
+        }));
+
         console.log(`✅ Switched to ${enable ? 'WHOLESALE' : 'RETAIL'} mode.`);
     };
+
 
     // ---- Restore wholesale mode from localStorage ----
     if (localStorage.getItem('wholesaleMode') === 'true') {
         const name = localStorage.getItem('businessName') || 'Retailer';
-        // Wait for elements to be injected before toggling
         function applyRestore() {
             const els = getElements();
             if (els.businessNameDisplay) {
@@ -855,7 +1099,7 @@
         applyRestore();
     }
 
-    // ---- Watch for logout button to appear and attach listener ----
+    // ---- Attach logout listener ----
     function attachLogoutListener() {
         const els = getElements();
         if (els.logoutBtn && !els.logoutBtn._listenerAttached) {
@@ -863,14 +1107,11 @@
                 e.preventDefault();
                 console.log('🔓 Logout button clicked.');
                 window.toggleWholesaleMode(false);
-                // Show profile dropdown again
                 const profile = document.getElementById('user-profile');
                 if (profile) profile.style.display = 'block';
-                // Close overlay if open
                 if (typeof window.closeAuthOverlay === 'function') {
                     window.closeAuthOverlay();
                 }
-                // Reload to reset UI
                 window.location.reload();
             });
             els.logoutBtn._listenerAttached = true;
@@ -880,9 +1121,7 @@
         return false;
     }
 
-    // Try to attach immediately
     if (!attachLogoutListener()) {
-        // Use MutationObserver to watch for the header injection
         const observer = new MutationObserver(function() {
             if (attachLogoutListener()) {
                 observer.disconnect();
@@ -892,7 +1131,6 @@
         console.log('👀 Watching for logout button to appear...');
     }
 
-    // ---- Expose helper ----
     window.isWholesaleActive = function() {
         return isWholesale;
     };
@@ -901,5 +1139,421 @@
     console.log('👉 Use toggleWholesaleMode(true/false, "BusinessName") to control it.');
 
 })();
+
+// ============================================
+// 10. CHECKOUT VALIDATION & ORDER TRIGGER (Direct Activation)
+// ============================================
+(function() {
+
+    console.log('🔍 Checkout validation loading...');
+
+    // Use event delegation for submit
+    document.addEventListener('submit', function(e) {
+        const form = e.target;
+        if (form.id !== 'checkout-form') return;
+
+        e.preventDefault();
+
+        console.log('📦 Validating checkout form...');
+
+        const name = document.getElementById('checkout-name').value.trim();
+        const phone = document.getElementById('checkout-phone').value.trim();
+        const email = document.getElementById('checkout-email').value.trim();
+        const address = document.getElementById('checkout-address').value.trim();
+        const lga = document.getElementById('checkout-lga').value;
+        const payment = document.getElementById('checkout-payment').value;
+
+        const errors = [];
+        if (!name) errors.push('Full Name is required.');
+        if (!phone) errors.push('Phone Number is required.');
+        if (!email) errors.push('Email Address is required.');
+        if (!address) errors.push('Delivery Address is required.');
+        if (!lga) errors.push('Please select a valid Local Government Area (LGA).');
+
+        if (phone && !/^0[789][01]\d{8}$/.test(phone)) {
+            errors.push('Phone number must be a valid Nigerian number (e.g., 08012345678).');
+        }
+        if (email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+            errors.push('Please enter a valid email address.');
+        }
+
+        if (errors.length > 0) {
+            const errorMessage = '❌ ' + errors[0];
+            console.warn('Validation errors:', errors);
+            if (typeof window.showOrderError === 'function') {
+                window.showOrderError(errorMessage);
+            } else {
+                alert(errorMessage);
+            }
+        } else {
+            console.log('✅ All fields valid. Processing order...');
+            const submitBtn = form.querySelector('button[type="submit"]');
+            if (submitBtn) {
+                submitBtn.textContent = '⏳ Processing...';
+                submitBtn.disabled = true;
+            }
+
+            setTimeout(function() {
+                if (submitBtn) {
+                    submitBtn.textContent = '🛒 Place Order';
+                    submitBtn.disabled = false;
+                }
+
+                const orderData = {
+                    orderNumber: '#ORD-' + Date.now(),
+                    total: '₦97,700',
+                    delivery: lga + ' – ' + (payment === 'cod' ? 'Cash on Delivery' : 'Prepaid'),
+                    eta: 'Today, 5:00 PM',
+                    customerName: name
+                };
+
+                // ---- 1. Show order success view ----
+                if (typeof window.showOrderSuccess === 'function') {
+                    window.showOrderSuccess(orderData);
+                } else {
+                    alert('✅ Order placed successfully!');
+                }
+
+                // ---- 2. Activate wholesale mode directly (if not already) ----
+                if (typeof window.toggleWholesaleMode === 'function') {
+                    // Check if already wholesale to avoid double toggle
+                    const isWholesale = localStorage.getItem('wholesaleMode') === 'true';
+                    if (!isWholesale) {
+                        window.toggleWholesaleMode(true, name);
+                    }
+                }
+
+                // ---- 3. Optionally dispatch event for other modules (cart, etc.) ----
+                document.dispatchEvent(new CustomEvent('orderPlaced', {
+                    detail: {
+                        success: true,
+                        orderData: orderData,
+                        customerName: name
+                    }
+                }));
+
+            }, 1500);
+        }
+    });
+
+    console.log('✅ Checkout validation ready (direct activation).');
+
+})();
+
+// ============================================
+// PRODUCT CATALOG – Static Data for Mockup
+// ============================================
+const productCatalog = {
+    // Rice
+    'RICE-5KG':    { name: 'NutraGold Rice (5kg)', retailPrice: 7000, wholesalePrice: 6800 },
+    'RICE-10KG':   { name: 'NutraGold Rice (10kg)', retailPrice: 13000, wholesalePrice: 12000 },
+    'RICE-25KG':   { name: 'NutraGold Rice (25kg)', retailPrice: 29000, wholesalePrice: 26000 },
+    'RICE-50KG':   { name: 'NutraGold Rice (50kg)', retailPrice: 59000, wholesalePrice: 52000 },
+
+    // Beans – Honey
+    'BEANS-HONEY-5KG':    { name: 'Honey Beans (5kg)', retailPrice: 11000, wholesalePrice: 10000 },
+    'BEANS-HONEY-10KG':   { name: 'Honey Beans (10kg)', retailPrice: 21000, wholesalePrice: 19000 },
+    'BEANS-HONEY-25KG':   { name: 'Honey Beans (25kg)', retailPrice: 49000, wholesalePrice: 45000 },
+    'BEANS-HONEY-JUMBO':  { name: 'Honey Beans (Jumbo)', retailPrice: 83000, wholesalePrice: 76000 },
+
+    // Beans – Brown
+    'BEANS-BROWN-5KG':    { name: 'Brown Beans (5kg)', retailPrice: 10000, wholesalePrice: 9200 },
+    'BEANS-BROWN-10KG':   { name: 'Brown Beans (10kg)', retailPrice: 19000, wholesalePrice: 17500 },
+    'BEANS-BROWN-25KG':   { name: 'Brown Beans (25kg)', retailPrice: 45000, wholesalePrice: 42000 },
+    'BEANS-BROWN-JUMBO':  { name: 'Brown Beans (Jumbo)', retailPrice: 72000, wholesalePrice: 66000 },
+
+    // Garri – Premium
+    'GARRI-PREMIUM-5KG':   { name: 'Premium Garri (5kg)', retailPrice: 7000, wholesalePrice: 6500 },
+    'GARRI-PREMIUM-10KG':  { name: 'Premium Garri (10kg)', retailPrice: 13000, wholesalePrice: 12000 },
+    'GARRI-PREMIUM-25KG':  { name: 'Premium Garri (25kg)', retailPrice: 34000, wholesalePrice: 31000 },
+    'GARRI-PREMIUM-JUMBO': { name: 'Premium Garri (Jumbo)', retailPrice: 70000, wholesalePrice: 64000 },
+
+    // Garri – Standard
+    'GARRI-STANDARD-5KG':   { name: 'Standard Garri (5kg)', retailPrice: 5000, wholesalePrice: 4600 },
+    'GARRI-STANDARD-10KG':  { name: 'Standard Garri (10kg)', retailPrice: 9000, wholesalePrice: 8200 },
+    'GARRI-STANDARD-25KG':  { name: 'Standard Garri (25kg)', retailPrice: 18000, wholesalePrice: 16500 },
+    'GARRI-STANDARD-JUMBO': { name: 'Standard Garri (Jumbo)', retailPrice: 40000, wholesalePrice: 36500 },
+};
+
+// ============================================
+// CART LOGIC – Simple Shopping Cart
+// ============================================
+(function() {
+
+    console.log('🛒 Cart controller loading...');
+
+    // ---- Cart data ----
+    let cart = [];
+
+    // ---- Load cart from localStorage ----
+    function loadCart() {
+
+        const stored = localStorage.getItem('foodcart_cart');
+        if (stored) {
+
+            try {
+
+                cart = JSON.parse(stored);
+                console.log('📦 Cart loaded from localStorage:', cart);
+
+            } catch (e) {
+
+                cart = [];
+
+            }
+        } else {
+
+            cart = [];
+
+        }
+
+        return cart;
+
+    }
+
+    // ---- Save cart to localStorage ----
+    function saveCart() {
+
+        localStorage.setItem('foodcart_cart', JSON.stringify(cart));
+        updateCartBadge();
+
+    }
+
+    // ---- Get current cart ----
+    window.getCart = function() {
+        return cart;
+    };
+
+    // ---- Get cart count ----
+    window.getCartCount = function() {
+
+        return cart.reduce((total, item) => total + item.quantity, 0);
+
+    };
+
+    // ---- Get cart total (respects wholesale mode) ----
+    window.getCartTotal = function() {
+        
+        const isWholesale = localStorage.getItem('wholesaleMode') === 'true';
+
+        return cart.reduce((total, item) => {
+
+            const price = isWholesale ? (item.wholesalePrice || item.retailPrice) : item.retailPrice;
+            return total + (price * item.quantity);
+
+        }, 0);
+        
+    };
+
+    // ---- Add item to cart ----
+    window.addToCart = function(sku, name, retailPrice, wholesalePrice, quantity, image) {
+        quantity = quantity || 1;
+        wholesalePrice = wholesalePrice || retailPrice; // fallback
+
+        console.log(`🛒 Adding to cart: ${name} (${sku}) x ${quantity}`);
+
+        // Check if item already exists
+        const existing = cart.find(item => item.sku === sku);
+        if (existing) {
+            existing.quantity += quantity;
+        } else {
+            cart.push({
+                sku: sku,
+                name: name,
+                retailPrice: parseFloat(retailPrice),
+                wholesalePrice: parseFloat(wholesalePrice),
+                quantity: quantity,
+                image: image || ''
+            });
+        }
+
+        saveCart();
+        updateCartBadge();
+        console.log('📦 Cart updated:', cart);
+        return cart;
+    };
+
+    // ---- Remove item from cart ----
+    window.removeFromCart = function(sku) {
+        cart = cart.filter(item => item.sku !== sku);
+        saveCart();
+        updateCartBadge();
+        console.log('🗑️ Removed item:', sku);
+        return cart;
+    };
+
+    // ---- Update quantity ----
+    window.updateCartQuantity = function(sku, quantity) {
+        const item = cart.find(item => item.sku === sku);
+        if (!item) return;
+        if (quantity <= 0) {
+            window.removeFromCart(sku);
+            return;
+        }
+        item.quantity = quantity;
+        saveCart();
+        updateCartBadge();
+        console.log('🔄 Updated quantity for:', sku, quantity);
+        return cart;
+    };
+
+    // ---- Clear cart ----
+    window.clearCart = function() {
+        cart = [];
+        saveCart();
+        updateCartBadge();
+        console.log('🗑️ Cart cleared.');
+        return cart;
+    };
+
+    // ---- Update cart badge ----
+    function updateCartBadge() {
+        const count = window.getCartCount();
+        const badge = document.querySelector('.cart-badge');
+        if (badge) {
+            badge.textContent = count;
+            // If wholesale mode, also show W?
+            const isWholesale = localStorage.getItem('wholesaleMode') === 'true';
+            badge.style.background = isWholesale ? '#16a34a' : '#f59e0b';
+        }
+    }
+
+    // ---- Recalculate cart when wholesale mode changes ----
+    // Hook into toggleWholesaleMode if available
+    /*
+    const originalToggle = window.toggleWholesaleMode;
+    if (originalToggle) {
+        window.toggleWholesaleMode = function(enable, businessName) {
+            originalToggle(enable, businessName);
+            // Update cart badge and any visible cart prices
+            updateCartBadge();
+            // If on cart page, re-render
+            if (document.getElementById('cart-items')) {
+                renderCartPage();
+            }
+        };
+    }*/
+
+    // ---- Recalculate cart when wholesale mode changes ----
+    document.addEventListener('wholesaleModeChanged', function(e) {
+        const isWholesale = e.detail.enabled;
+        console.log('🛒 Wholesale mode changed, updating cart...');
+        updateCartBadge();
+        if (document.getElementById('cart-items')) {
+            renderCartPage();
+        }
+    });
+
+    // ---- Render cart page (for cart.html) ----
+    window.renderCartPage = function() {
+        const container = document.getElementById('cart-items');
+        if (!container) return;
+
+        const isWholesale = localStorage.getItem('wholesaleMode') === 'true';
+        const items = window.getCart();
+        const total = window.getCartTotal();
+
+        if (items.length === 0) {
+            container.innerHTML = `<p style="text-align:center; padding:40px;">🛒 Your cart is empty.</p>`;
+            return;
+        }
+
+        let html = `
+            <table style="width:100%; border-collapse:collapse;">
+                <thead>
+                    <tr style="border-bottom:2px solid #e2e8f0;">
+                        <th style="text-align:left; padding:8px;">Product</th>
+                        <th style="text-align:left; padding:8px;">Price</th>
+                        <th style="text-align:left; padding:8px;">Qty</th>
+                        <th style="text-align:left; padding:8px;">Subtotal</th>
+                        <th style="text-align:left; padding:8px;"></th>
+                    </tr>
+                </thead>
+                <tbody>
+        `;
+
+        items.forEach(item => {
+            const price = isWholesale ? (item.wholesalePrice || item.retailPrice) : item.retailPrice;
+            const subtotal = price * item.quantity;
+            const retailDisplay = isWholesale ? `<span style="text-decoration:line-through; color:#94a3b8; font-size:0.85rem;">₦${item.retailPrice}</span> ` : '';
+            html += `
+                <tr style="border-bottom:1px solid #e2e8f0;">
+                    <td style="padding:12px 8px;">
+                        <div style="display:flex; align-items:center; gap:10px;">
+                            ${item.image ? `<img src="${item.image}" style="width:50px; height:50px; object-fit:cover; border-radius:6px;">` : '<span style="font-size:1.5rem;">📦</span>'}
+                            <span>${item.name}</span>
+                        </div>
+                    </td>
+                    <td style="padding:12px 8px;">
+                        ${retailDisplay} ₦${price}
+                    </td>
+                    <td style="padding:12px 8px;">
+                        <div style="display:flex; align-items:center; gap:4px;">
+                            <button onclick="window.updateCartQuantity('${item.sku}', ${item.quantity - 1})" style="padding:4px 10px; border:1px solid #e2e8f0; border-radius:4px; background:white; cursor:pointer;">−</button>
+                            <span style="min-width:30px; text-align:center;">${item.quantity}</span>
+                            <button onclick="window.updateCartQuantity('${item.sku}', ${item.quantity + 1})" style="padding:4px 10px; border:1px solid #e2e8f0; border-radius:4px; background:white; cursor:pointer;">+</button>
+                        </div>
+                    </td>
+                    <td style="padding:12px 8px;">₦${subtotal}</td>
+                    <td style="padding:12px 8px;">
+                        <button onclick="window.removeFromCart('${item.sku}'); window.renderCartPage();" style="background:none; border:none; color:#dc2626; cursor:pointer;">✕</button>
+                    </td>
+                </tr>
+            `;
+        });
+
+        html += `
+                </tbody>
+            </table>
+            <div style="text-align:right; margin-top:20px; font-size:1.2rem; font-weight:700;">
+                Total: ₦${total}
+            </div>
+            <div style="margin-top:20px; display:flex; gap:12px; justify-content:flex-end;">
+                <button onclick="window.clearCart(); window.renderCartPage();" class="btn btn-outline" style="padding:8px 20px; border:2px solid #0f172a; background:transparent; border-radius:6px; cursor:pointer;">Clear Cart</button>
+                <a href="checkout.html" class="btn btn-green" style="padding:8px 20px; background:#16a34a; color:white; border-radius:6px; text-decoration:none;">Proceed to Checkout →</a>
+            </div>
+        `;
+
+        container.innerHTML = html;
+    };
+
+    // ---- Expose helpers for PDP/Product cards ----
+    window.addToCartFromElement = function(element) {
+        const sku = element.dataset.sku;
+        const name = element.dataset.name;
+        const retailPrice = parseFloat(element.dataset.retailPrice);
+        const wholesalePrice = parseFloat(element.dataset.wholesalePrice) || retailPrice;
+        const quantity = parseInt(element.dataset.quantity) || 1;
+        const image = element.dataset.image || '';
+        window.addToCart(sku, name, retailPrice, wholesalePrice, quantity, image);
+        // Visual feedback
+        const originalText = element.textContent;
+        element.textContent = '✅ Added!';
+        element.style.background = '#16a34a';
+        setTimeout(() => {
+            element.textContent = originalText;
+            element.style.background = '';
+        }, 1500);
+    };
+
+    // ---- Load cart on startup ----
+    loadCart();
+    updateCartBadge();
+
+    // ---- If on cart page, render ----
+    if (document.getElementById('cart-items')) {
+        renderCartPage();
+    }
+
+    console.log('✅ Cart controller ready.');
+    console.log('👉 Use addToCart(sku, name, retailPrice, wholesalePrice, quantity)');
+    console.log('👉 Use getCart(), removeFromCart(sku), clearCart()');
+
+})();
+
+// ---- Helper to get product data by SKU ----
+window.getProductBySku = function(sku) {
+    return productCatalog[sku] || null;
+};
 
 console.log('✅ mockup.js loaded successfully.');

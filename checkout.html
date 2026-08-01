@@ -5,7 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Foodcart Stores – Interactive Mockup</title>
         <link rel="stylesheet" href="assets/mockup.css?v=2">
-        <script src="assets/mockup.js?v=2"></script>    
+        <script src="assets/mockup-2.js?v=2"></script>    
     </head>
 
     <div id="header-placeholder" class=" sticky-top"></div>
@@ -16,11 +16,11 @@
             <!-- PAGE: CHECKOUT -->
             <!-- ============================================ -->
             <div class="page-content">
-
+                
                 <div class="page-content-inner container">
-
+                    
                     <h2 class="page-title">Checkout</h2>
-
+                    
                     <div class="checkout-grid">
 
                         <div class="checkout-form">
@@ -82,6 +82,64 @@
                             </div>
                         
                         </div>
+                                            
+                        <form id="checkout-form">
+
+                            <!-- Full Name -->
+                            <div style="margin-bottom:12px;">
+                                <label style="display:block; font-weight:600; font-size:0.9rem; margin-bottom:4px;">Full Name <span style="color:#dc2626;">*</span></label>
+                                <input type="text" id="checkout-name" placeholder="John Doe" value="" style="width:100%; padding:10px; border:1px solid #e2e8f0; border-radius:8px;">
+                            </div>
+
+                            <!-- Phone -->
+                            <div style="margin-bottom:12px;">
+                                <label style="display:block; font-weight:600; font-size:0.9rem; margin-bottom:4px;">Phone Number <span style="color:#dc2626;">*</span></label>
+                                <input type="tel" id="checkout-phone" placeholder="08012345678" value="" style="width:100%; padding:10px; border:1px solid #e2e8f0; border-radius:8px;">
+                            </div>
+
+                            <!-- Email -->
+                            <div style="margin-bottom:12px;">
+                                <label style="display:block; font-weight:600; font-size:0.9rem; margin-bottom:4px;">Email Address <span style="color:#dc2626;">*</span></label>
+                                <input type="email" id="checkout-email" placeholder="john@example.com" value="" style="width:100%; padding:10px; border:1px solid #e2e8f0; border-radius:8px;">
+                            </div>
+
+                            <!-- Address -->
+                            <div style="margin-bottom:12px;">
+                                <label style="display:block; font-weight:600; font-size:0.9rem; margin-bottom:4px;">Street / Bus Stop <span style="color:#dc2626;">*</span></label>
+                                <input type="text" id="checkout-address" placeholder="123 Awolowo Road, Opposite Shoprite" value="" style="width:100%; padding:10px; border:1px solid #e2e8f0; border-radius:8px;">
+                            </div>
+
+                            <!-- LGA -->
+                            <div style="margin-bottom:12px;">
+                                <label style="display:block; font-weight:600; font-size:0.9rem; margin-bottom:4px;">Local Government Area (LGA) <span style="color:#dc2626;">*</span></label>
+                                <select id="checkout-lga" style="width:100%; padding:10px; border:1px solid #e2e8f0; border-radius:8px; background:white;">
+                                    <option value="">Select LGA...</option>
+                                    <option value="Ikeja">Ikeja</option>
+                                    <option value="Surulere">Surulere</option>
+                                    <option value="Eti-Osa">Eti-Osa (Lekki/VI)</option>
+                                    <option value="Lagos Mainland">Lagos Mainland</option>
+                                    <option value="Apapa">Apapa</option>
+                                    <option value="Alimosho">Alimosho</option>
+                                </select>
+                            </div>
+
+                            <!-- Payment Method (optional, for demo) -->
+                            <div style="margin-bottom:16px;">
+                                <label style="display:block; font-weight:600; font-size:0.9rem; margin-bottom:4px;">Payment Method</label>
+                                <select id="checkout-payment" style="width:100%; padding:10px; border:1px solid #e2e8f0; border-radius:8px; background:white;">
+                                    <option value="card">Card</option>
+                                    <option value="bank">Bank Transfer</option>
+                                    <option value="ussd">USSD</option>
+                                    <option value="cod">Cash on Delivery</option>
+                                </select>
+                            </div>
+
+                            <!-- Place Order Button -->
+                            <button type="submit" class="btn btn-green" style="width:100%; padding:14px; border-radius:8px; font-size:1.1rem; font-weight:700; border:none; cursor:pointer; background:#16a34a; color:white;">
+                                🛒 Place Order
+                            </button>
+                            
+                        </form>
 
                         <div class="order-summary">
 
@@ -95,11 +153,11 @@
                             <p style="font-size:0.75rem; color:#64748b; text-align:center; margin-top:8px;">🔒 Secure transaction via Paystack/Flutterwave</p>
 
                         </div>
-
+                    
                     </div>
 
                 </div>
-            
+
             </div>
 
         </main>
