@@ -4,297 +4,169 @@
 
 /**
  * 1. GLOBAL PRODUCT CATALOG DATA STRUCTURE
- * Acts as the central single source of truth for item pricing and details.
  */
 window.productCatalog = {
-    'RICE-5KG':    { name: 'NutraGold Rice (5kg)', retailPrice: 7000, wholesalePrice: 6800 },
-    'RICE-10KG':   { name: 'NutraGold Rice (10kg)', retailPrice: 13000, wholesalePrice: 12000 },
-    'RICE-25KG':   { name: 'NutraGold Rice (25kg)', retailPrice: 29000, wholesalePrice: 26000 },
-    'RICE-50KG':   { name: 'NutraGold Rice (50kg)', retailPrice: 59000, wholesalePrice: 52000 },
-    'BEANS-HONEY-5KG': { name: 'Honey Beans (5kg)', retailPrice: 11000, wholesalePrice: 10000 },
-    'BEANS-HONEY-10KG': { name: 'Honey Beans (10kg)', retailPrice: 21000, wholesalePrice: 19000 },
-    'BEANS-HONEY-25KG': { name: 'Honey Beans (25kg)', retailPrice: 49000, wholesalePrice: 45000 },
+    'RICE-5KG':          { name: 'NutraGold Rice (5kg)', retailPrice: 7000, wholesalePrice: 6800 },
+    'RICE-10KG':         { name: 'NutraGold Rice (10kg)', retailPrice: 13000, wholesalePrice: 12000 },
+    'RICE-25KG':         { name: 'NutraGold Rice (25kg)', retailPrice: 29000, wholesalePrice: 26000 },
+    'RICE-50KG':         { name: 'NutraGold Rice (50kg)', retailPrice: 59000, wholesalePrice: 52000 },
+    'BEANS-HONEY-5KG':   { name: 'Honey Beans (5kg)', retailPrice: 11000, wholesalePrice: 10000 },
+    'BEANS-HONEY-10KG':  { name: 'Honey Beans (10kg)', retailPrice: 21000, wholesalePrice: 19000 },
+    'BEANS-HONEY-25KG':  { name: 'Honey Beans (25kg)', retailPrice: 49000, wholesalePrice: 45000 },
     'GARRI-PREMIUM-5KG': { name: 'Premium Garri (5kg)', retailPrice: 7000, wholesalePrice: 6500 }
 };
 
-/**
- * Global Helper Function: Lookup Product by SKU
- * @param {string} sku - Unique product identifier
- * @returns {Object|null} - Returns product object or null if not found
- */
 window.getProductBySku = function(sku) {
     return window.productCatalog[sku] || null;
 };
 
 // ============================================
-// 2. MOBILE MENU TOGGLE (Clean & Dynamic)
+// 2. MOBILE MENU TOGGLE
 // ============================================
 (function() {
-
     let initialized = false;
 
     function initMobileMenu() {
-
         if (initialized) return;
         initialized = true;
 
-        // Event Listener: Delegated handler for mobile navbar toggle (#mobileToggle)
         document.addEventListener('click', function(e) {
-
             const toggleBtn = e.target.closest('#mobileToggle');
             const nav = document.querySelector('.nav-links');
 
-            // Toggle mobile drawer open/close
             if (toggleBtn && nav) {
-
                 nav.classList.toggle('active');
-
                 const isActive = nav.classList.contains('active');
                 toggleBtn.textContent = isActive ? '✕' : '☰';
                 return;
-
             }
 
-            // Close mobile menu when clicking anywhere outside of the menu
             if (nav && nav.classList.contains('active') && !e.target.closest('.nav-links')) {
-
                 nav.classList.remove('active');
                 const btn = document.getElementById('mobileToggle');
                 if (btn) btn.textContent = '☰';
-
             }
-
         });
-
-        console.log('✅ Mobile menu event listener attached.');
-
     }
 
-    // Run when DOM is ready
     if (document.readyState === 'loading') {
-
         document.addEventListener('DOMContentLoaded', initMobileMenu);
-
     } else {
-
         initMobileMenu();
-
     }
-
 })();
 
 // ============================================
-// 3. AUTO-HIGHLIGHT ACTIVE NAV LINK (Dynamic)
+// 3. AUTO-HIGHLIGHT ACTIVE NAV LINK
 // ============================================
 (function() {
-
     let initialized = false;
 
     function applyNavHighlight() {
-
-        // Prevent multiple runs
         if (initialized) return;
         initialized = true;
 
-        console.log('🔍 Applying nav highlight...');
-
         const currentPath = window.location.pathname;
         const currentPage = currentPath.split('/').pop() || 'index.html';
-        // Remove query strings
         const cleanCurrentPage = currentPage.split('?')[0];
-        console.log('📄 Current page:', cleanCurrentPage);
 
         const links = document.querySelectorAll('.nav-link a');
-        console.log('🔗 Links found:', links.length);
-
         if (links.length === 0) {
-
-            console.warn('⚠️ No .nav-link a elements found yet. Will retry.');
-            initialized = false; // Reset so we can try again
-            return false; // Indicate failure
-
+            initialized = false;
+            return false;
         }
 
         links.forEach(link => {
-
             let href = link.getAttribute('href');
             if (!href) return;
 
-            // Remove query strings and fragments
             href = href.split('?')[0].split('#')[0];
             const hrefFile = href.split('/').pop() || href;
 
             if (hrefFile === cleanCurrentPage) {
-
                 link.classList.add('active');
-                console.log('  ✅ Active added to:', hrefFile);
-
             } else {
-
                 link.classList.remove('active');
-
             }
-
         });
 
-        return true; // Success
+        return true;
     }
 
-    // 2. Use MutationObserver to watch for injected nav
     function watchForNav() {
-
-        console.log('👀 Watching for nav injection...');
-
-        const observer = new MutationObserver(function(mutations) {
-
-            // Check if any .nav-link a elements have been added
+        const observer = new MutationObserver(function() {
             const links = document.querySelectorAll('.nav-link a');
             if (links.length > 0) {
-
-                console.log('✅ Nav detected! Applying highlight.');
-                applyNavHighlight();
-                observer.disconnect(); // Stop watching once we have the nav
-
-            }
-
-        });
-
-        // Start observing the entire document for child additions
-        observer.observe(document.body, {
-
-            childList: true,
-            subtree: true
-
-        });
-
-        // Fallback: try again after a short delay if observer doesn't fire
-        setTimeout(function() {
-
-            const links = document.querySelectorAll('.nav-link a');
-            if (links.length === 0) {
-
-                console.warn('⏱️ Nav not detected after timeout. Please check your injection script.');
-
-            } else {
-
                 applyNavHighlight();
                 observer.disconnect();
-
             }
-
-        }, 3000); // 3 second fallback
-
-    }
-
-    // 1. Try immediately (in case nav is already in DOM)
-    if (document.readyState !== 'loading') {
-
-        if (!applyNavHighlight()) {
-
-            // If failed, wait for DOM changes
-            watchForNav();
-
-        }
-
-    } else {
-
-        document.addEventListener('DOMContentLoaded', function() {
-
-            if (!applyNavHighlight()) {
-
-                watchForNav();
-
-            }
-
         });
 
+        observer.observe(document.body, { childList: true, subtree: true });
+
+        setTimeout(function() {
+            applyNavHighlight();
+            observer.disconnect();
+        }, 3000);
     }
 
+    if (document.readyState !== 'loading') {
+        if (!applyNavHighlight()) watchForNav();
+    } else {
+        document.addEventListener('DOMContentLoaded', function() {
+            if (!applyNavHighlight()) watchForNav();
+        });
+    }
 })();
 
 // ============================================
 // 4. PROFILE DROPDOWN MODULE
 // ============================================
 (function() {
-
-    /**
-     * Event Listener: Handles user profile dropdown menu open/close toggling.
-     */
     document.addEventListener('click', function(e) {
-
         const profile = document.getElementById('user-profile');
         if (!profile) return;
 
-        // Toggle active class if clicking on profile, close if clicking outside
         if (profile.contains(e.target)) {
-
             profile.classList.toggle('active');
-
         } else {
-
             profile.classList.remove('active');
-
         }
-
     });
-
 })();
 
 // ============================================
 // 5. AUTH OVERLAY & VIEW MANAGER MODULE
 // ============================================
 (function() {
-
-    /**
-     * Helper Function: Retrieve key modal backdrop & content DOM elements
-     */
     function getOverlayElements() {
-
         return {
             backdrop: document.getElementById('authBackdrop') || document.querySelector('.auth-backdrop'),
             closeBtn: document.getElementById('authCloseBtn') || document.querySelector('.auth-close-btn'),
             content: document.getElementById('authContent') || document.querySelector('.auth-content')
         };
-
     }
 
-    /**
-     * Global Function: Open authentication overlay backdrop
-     */
     window.openAuthOverlay = function() {
-
         const { backdrop } = getOverlayElements();
         if (backdrop) {
             backdrop.classList.add('show');
-            document.body.classList.add('no-scroll'); // Prevent background body scroll
+            document.body.classList.add('no-scroll');
         }
-
     };
 
-    /**
-     * Global Function: Close authentication overlay backdrop
-     */
     window.closeAuthOverlay = function() {
         const { backdrop } = getOverlayElements();
         if (backdrop) {
             backdrop.classList.remove('show');
-            document.body.classList.remove('no-scroll'); // Re-enable background body scroll
+            document.body.classList.remove('no-scroll');
         }
     };
 
-    /**
-     * Global Function: Switch active view inside the authentication modal
-     * @param {string} view - Target view name ('login', 'register', 'success', 'orderSuccess', 'orderError')
-     * @param {string} [authStatus] - Optional status flag ('login' or 'register')
-     * @param {string} [businessName] - User/Business name for personalization
-     */
     window.showAuthView = function(view, authStatus, businessName) {
-
         const allViews = document.querySelectorAll('.auth-view');
-
         if (allViews.length === 0) return;
 
-        // Hide all modal views
         allViews.forEach(el => {
             el.classList.remove('show');
             el.classList.add('hide');
@@ -310,79 +182,52 @@ window.getProductBySku = function(sku) {
 
         const target = document.getElementById(viewMap[view]);
         if (target) {
-
             target.classList.remove('hide');
-            target.classList.add('show'); // Reveal target view
-
+            target.classList.add('show');
         } else {
-
             return;
-
         }
 
-        // Custom logic for auth success view
         if (view === 'success') {
-
             const loginEls = target.querySelectorAll('.login');
             const regEls = target.querySelectorAll('.register');
 
             loginEls.forEach(el => {
-
                 if (authStatus === 'login') {
-
                     el.classList.remove('hide');
                     el.classList.add('show');
-
                 } else {
-
                     el.classList.remove('show');
                     el.classList.add('hide');
-
                 }
-
             });
 
             regEls.forEach(el => {
-
                 if (authStatus === 'register') {
-
                     el.classList.remove('hide');
                     el.classList.add('show');
-
                 } else {
-
                     el.classList.remove('show');
                     el.classList.add('hide');
-
                 }
-
             });
 
             if (businessName) {
-
                 target.querySelectorAll('#successBusinessName').forEach(el => {
                     el.innerHTML = `Welcome, <strong>${businessName}</strong>!`;
                 });
-
             }
 
-            // Automatically transition customer to wholesale B2B pricing upon login/register
             if (typeof window.toggleWholesaleMode === 'function') {
                 window.toggleWholesaleMode(true, businessName);
             }
-
         }
 
         window.openAuthOverlay();
-
     };
 
-    /**
-     * Global Function: Populate and display Order Success View
-     * @param {Object} orderData - Order payload (number, total, delivery, eta, customerName)
-     */
     window.showOrderSuccess = function(orderData) {
-
+        orderData = orderData || {};
         const els = {
             number: document.getElementById('orderNumber'),
             total: document.getElementById('orderTotal'),
@@ -398,325 +243,176 @@ window.getProductBySku = function(sku) {
         if (els.name) els.name.textContent = orderData.customerName || 'Retailer';
 
         window.showAuthView('orderSuccess');
-
     };
 
-    /**
-     * Global Function: Populate and display Order Error View
-     * @param {string} errorMessage - Message explaining the failure
-     */
     window.showOrderError = function(errorMessage) {
-
         const msgEl = document.getElementById('orderErrorMessage');
         if (msgEl) msgEl.textContent = errorMessage || 'Payment verification failed.';
         window.showAuthView('orderError');
-
     };
 
-    /**
-     * Event Listener: Global delegated click handler for overlay controls and triggers
-     */
     document.addEventListener('click', function(e) {
-
-        // Intercept close button clicks
         const closeBtn = e.target.closest('#authCloseBtn, .auth-close-btn');
         if (closeBtn) {
-
             window.closeAuthOverlay();
             return;
-
         }
 
-        // Close modal when clicking directly on backdrop background
         const backdrop = e.target;
         if (backdrop && backdrop.id === 'authBackdrop') {
-
             window.closeAuthOverlay();
             return;
-
         }
 
-        // Intercept login/register link clicks to open overlay instead of navigating
         const link = e.target.closest('a[href*="login"], a[href*="register"], .login-btn, .register-btn, .switch-view, [data-auth="login"], [data-auth="register"]');
         if (link) {
-
             e.preventDefault();
             let view = link.dataset.view || link.dataset.auth;
 
             if (!view) {
-
                 const href = link.getAttribute('href') || '';
                 view = href.includes('login') ? 'login' : href.includes('register') ? 'register' : null;
-
             }
 
             if (view) window.showAuthView(view);
-
         }
-
     });
 
-    /**
-     * Event Listener: Handles submit actions on Auth Forms (Login / Register)
-     */
     document.addEventListener('submit', function(e) {
-
         if (e.target.id === 'auth-login-form') {
-
             e.preventDefault();
             window.showAuthView('success', 'login', 'Adeola Foods');
-
         } else if (e.target.id === 'auth-register-form') {
-
             e.preventDefault();
             const input = e.target.querySelector('input[placeholder*="Business Name"]');
             const name = input && input.value.trim() ? input.value.trim() : 'Retailer';
             window.showAuthView('success', 'register', name);
-
         }
-
     });
-
 })();
 
 // ============================================
-// 6. SUCCESS HANDLERS – Updated
+// 6. SUCCESS & ORDER HANDLERS
 // ============================================
 (function() {
-
-    console.log('🔍 Success handlers loading...');
-
     window.handleSuccessStartShopping = function() {
-        if (typeof window.closeAuthOverlay === 'function') {
-            window.closeAuthOverlay();
-        }
+        if (typeof window.closeAuthOverlay === 'function') window.closeAuthOverlay();
         window.location.href = 'shop.html';
     };
 
     window.handleSuccessDashboard = function() {
-        if (typeof window.closeAuthOverlay === 'function') {
-            window.closeAuthOverlay();
-        }
+        if (typeof window.closeAuthOverlay === 'function') window.closeAuthOverlay();
         alert('📊 Dashboard page coming soon!');
         window.location.href = 'index.html';
     };
 
     window.handleSuccessRedirect = function() {
-
-        // Stay on the current page
-        if (typeof window.closeAuthOverlay === 'function') {
-            window.closeAuthOverlay();
-        }
-        
-        // No reload needed – wholesale mode is already active
-        console.log('✅ Redirect complete – staying on current page with wholesale prices.');
-
+        if (typeof window.closeAuthOverlay === 'function') window.closeAuthOverlay();
     };
 
     window.handleSuccessLogout = function() {
-
-        if (typeof window.closeAuthOverlay === 'function') {
-            window.closeAuthOverlay();
-        }
-        if (typeof window.toggleWholesaleMode === 'function') {
-            window.toggleWholesaleMode(false);
-        }
+        if (typeof window.closeAuthOverlay === 'function') window.closeAuthOverlay();
+        if (typeof window.toggleWholesaleMode === 'function') window.toggleWholesaleMode(false);
         localStorage.removeItem('wholesaleMode');
         localStorage.removeItem('businessName');
         window.location.href = 'index.html';
-
     };
 
-    console.log('✅ Success handlers ready.');
-
-})();
-
-// ============================================
-// 7. ORDER HANDLERS
-// ============================================
-(function() {
-
     window.handleOrderContinueShopping = function() {
-
-        if (typeof window.closeAuthOverlay === 'function') {
-
-            window.closeAuthOverlay();
-
-        }
-
+        if (typeof window.closeAuthOverlay === 'function') window.closeAuthOverlay();
         window.location.href = 'shop.html';
-
     };
 
     window.handleOrderViewHistory = function() {
-
-        if (typeof window.closeAuthOverlay === 'function') {
-
-            window.closeAuthOverlay();
-
-        }
-
+        if (typeof window.closeAuthOverlay === 'function') window.closeAuthOverlay();
         alert('📊 Orders page coming soon!');
         window.location.href = 'index.html';
-
     };
 
     window.handleOrderDownloadInvoice = function() {
-
         alert('📄 Invoice download coming soon!');
-
     };
 
     window.handleOrderRetry = function() {
-
-        if (typeof window.closeAuthOverlay === 'function') {
-
-            window.closeAuthOverlay();
-
-        }
-
-        // Return to checkout
+        if (typeof window.closeAuthOverlay === 'function') window.closeAuthOverlay();
         window.location.href = 'checkout.html';
-
     };
 
     window.handleOrderContactSupport = function() {
-
         alert('📞 Support: support@foodcart.com | +234 800 123 4567');
-
     };
 
     window.handleOrderReturnToCart = function() {
-
-        if (typeof window.closeAuthOverlay === 'function') {
-
-            window.closeAuthOverlay();
-
-        }
-
+        if (typeof window.closeAuthOverlay === 'function') window.closeAuthOverlay();
         window.location.href = 'cart.html';
-
     };
-
-    console.log('✅ Order handlers ready.');
-
 })();
 
 // ============================================
-// 8. WHOLESALE MODE CONTROLLER (Class-Based)
+// 7. WHOLESALE MODE CONTROLLER
 // ============================================
 (function() {
+    let isWholesale = localStorage.getItem('wholesaleMode') === 'true';
 
-    let isWholesale = false; // Internal private state variable
-
-    /**
-     * Global Function: Safe boolean getter returning active wholesale mode state
-     * @returns {boolean}
-     */
     window.isWholesaleActive = function() {
         return isWholesale;
     };
 
-    /**
-     * Global Function: Toggles interface between Retail and Wholesale (B2B) pricing views
-     * @param {boolean} enable - True to activate wholesale, false for retail
-     * @param {string} [businessName] - Registered business account name
-     */
     window.toggleWholesaleMode = function(enable, businessName) {
-
-        // 1. Update module scope boolean state
         isWholesale = Boolean(enable);
 
-        // 2. Toggle central body class to let CSS automatically handle view swapping
         document.body.classList.toggle('wholesale-mode-active', isWholesale);
 
-        // 3. Swap Price Badges text dynamically
         document.querySelectorAll('.badge-orange, .badge-green').forEach(el => {
-
             el.textContent = isWholesale ? 'Wholesale Price' : 'Retail Price';
-
             if (isWholesale) {
-
                 el.classList.remove('badge-orange');
                 el.classList.add('badge-green');
-
             } else {
-
                 el.classList.remove('badge-green');
                 el.classList.add('badge-orange');
-
             }
-
         });
 
-        // 4. Update header Business Name label
         const name = businessName || localStorage.getItem('businessName') || 'Retailer';
         const businessNameDisplay = document.getElementById('businessNameDisplay');
         if (businessNameDisplay) {
             businessNameDisplay.textContent = isWholesale ? name : 'Retailer';
         }
 
-        // 5. Persist wholesale preference to LocalStorage
         if (isWholesale) {
-
             localStorage.setItem('wholesaleMode', 'true');
             localStorage.setItem('businessName', name);
-
         } else {
-
             localStorage.removeItem('wholesaleMode');
             localStorage.removeItem('businessName');
-
         }
 
-        // 6. Dispatch global custom event for reactive UI updates (e.g. updating cart totals)
         document.dispatchEvent(new CustomEvent('wholesaleModeChanged', {
             detail: { enabled: isWholesale, businessName: name }
         }));
-        
     };
 
-    /**
-     * Global Function: Handle user logout reset
-     */
     window.handleLogout = function() {
-
         window.toggleWholesaleMode(false);
-
-        if (typeof window.closeAuthOverlay === 'function') {
-
-            window.closeAuthOverlay();
-
-        }
-
+        if (typeof window.closeAuthOverlay === 'function') window.closeAuthOverlay();
         window.location.reload();
-
     };
 
-    /**
-     * Helper Function: Restore state on initial page load if saved in local storage
-     */
-    function restoreState() {
-
+    function applyStateOnLoad() {
         if (localStorage.getItem('wholesaleMode') === 'true') {
-
             const name = localStorage.getItem('businessName') || 'Retailer';
             window.toggleWholesaleMode(true, name);
-
+        } else {
+            window.toggleWholesaleMode(false);
         }
-
     }
 
     if (document.readyState === 'loading') {
-
-        document.addEventListener('DOMContentLoaded', restoreState);
-
+        document.addEventListener('DOMContentLoaded', applyStateOnLoad);
     } else {
-
-        restoreState();
-
+        applyStateOnLoad();
     }
-    
 })();
 
 // ============================================
@@ -1022,60 +718,52 @@ window.getProductBySku = function(sku) {
 })();
 
 // ============================================
-// 10. ADD TO CART CONTROLLER MODULE
+// 9. ADD TO CART EVENT LISTENER
 // ============================================
 document.addEventListener('click', function(e) {
-    // 1. Listen for clicks on any "Add to Cart" button inside the quantity block
-    const btn = e.target.closest('.qty-add .btn');
+    const btn = e.target.closest('.qty-add .btn, .add-to-cart-btn');
     if (!btn) return;
 
     e.preventDefault();
 
-    const pdpSummary = btn.closest('.pdp-summary');
+    const pdpSummary = btn.closest('.pdp-summary, .product-card');
     if (!pdpSummary) return;
 
-    // 2. Determine if Wholesale or Retail is active
     const isWholesale = (typeof window.isWholesaleActive === 'function') 
         ? window.isWholesaleActive() 
         : (localStorage.getItem('wholesaleMode') === 'true');
 
-    // 3. Grab Product Name and base SKU
-    const titleEl = pdpSummary.querySelector('.title');
+    const titleEl = pdpSummary.querySelector('.title, .product-title, h3, h4');
     const skuEl = pdpSummary.querySelector('.sku');
     
     const productName = titleEl ? titleEl.textContent.trim() : 'Product';
     const baseSku = skuEl ? skuEl.textContent.replace(/^SKU:\s*/i, '').trim() : 'GENERIC';
 
-    // 4. Resolve Pricing/Option Element with Fallback Order:
-    // Mode Select -> Opposite Mode Select -> Static .price element
     const modeSelect = isWholesale 
         ? pdpSummary.querySelector('select#wholesale') 
         : pdpSummary.querySelector('select#retail');
 
     const selectEl = modeSelect 
         || pdpSummary.querySelector('select#wholesale') 
-        || pdpSummary.querySelector('select#retail');
+        || pdpSummary.querySelector('select#retail')
+        || pdpSummary.querySelector('select');
 
     const priceStaticEl = pdpSummary.querySelector('.price');
 
-    // Resolve quantity input field
     const qtyInput = isWholesale 
         ? pdpSummary.querySelector('input.qty-count.wholesale') 
         : pdpSummary.querySelector('input.qty-count.retail');
 
-    const fallbackQty = pdpSummary.querySelector('.qty-input input[type="number"]');
+    const fallbackQty = pdpSummary.querySelector('.qty-input input, input[type="number"]');
     const quantity = parseInt(qtyInput ? qtyInput.value : (fallbackQty ? fallbackQty.value : 1), 10) || 1;
 
-    // 5. Parse selected option, price, and variant SKU
     let selectedValue = selectEl ? selectEl.value : '';
     let selectedOptionText = selectEl && selectEl.selectedIndex !== -1 
         ? selectEl.options[selectEl.selectedIndex].text 
         : '';
     
-    // Build unique SKU per variant (e.g., GARR-001-5kg) or fallback to base SKU
     const itemSku = selectedValue ? `${baseSku}-${selectedValue}` : baseSku;
 
-    // Extract raw price string from <select> option text OR static .price element
     let rawPriceText = '';
     if (selectEl && selectedOptionText) {
         rawPriceText = selectedOptionText;
@@ -1083,30 +771,23 @@ document.addEventListener('click', function(e) {
         rawPriceText = priceStaticEl.value || priceStaticEl.textContent || '';
     }
 
-    // Extract monetary number (e.g., "5kg – ₦6,000" or "₦14,000.00" -> 6000 or 14000)
     const priceMatch = rawPriceText.match(/₦\s*([\d,]+(?:\.\d+)?)/);
     const parsedPrice = priceMatch 
         ? parseFloat(priceMatch[1].replace(/,/g, '')) 
         : (parseFloat(rawPriceText.replace(/[^0-9.]/g, '')) || 0);
 
-    // Set retail and wholesale prices
     const retailPrice = parsedPrice; 
     const wholesalePrice = parsedPrice;
 
-    // Build item title including variant label if available
     const fullItemName = selectedOptionText ? `${productName} (${selectedOptionText.trim()})` : productName;
 
-    // 6. Push to Cart Controller
     if (typeof window.addToCart === 'function') {
         window.addToCart(itemSku, fullItemName, retailPrice, wholesalePrice, quantity);
-        console.log(`🛒 Added to Cart: ${quantity}x ${fullItemName} [SKU: ${itemSku}] @ ₦${parsedPrice}`);
-    } else {
-        console.error('❌ window.addToCart is not defined.');
     }
 });
 
 // ============================================
-// 11. CHECKOUT PROCESSOR MODULE (INTEGRATED)
+// 10. CHECKOUT PROCESSOR MODULE (INTEGRATED)
 // ============================================
 (function() {
     const STORAGE_KEY = 'foodcart_cart';

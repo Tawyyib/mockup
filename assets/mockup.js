@@ -1000,7 +1000,7 @@
 
     // ---- Toggle wholesale mode ----
     window.toggleWholesaleMode = function(enable, businessName) {
-        
+
         isWholesale = enable;
         window.isWholesaleActive = enable;
 
@@ -1034,8 +1034,10 @@
         // Update cart badge
         const cartBadge = document.querySelector('.cart-badge');
         if (cartBadge) {
+
             cartBadge.textContent = enable ? 'W' : '2';
             cartBadge.style.background = enable ? '#16a34a' : '#f59e0b';
+            
         }
 
         // Update hero tags

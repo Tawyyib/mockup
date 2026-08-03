@@ -72,6 +72,7 @@
     }
 
     /* When Wholesale Mode is Active: hide retail elements & show wholesale elements */
+    body.wholesale-mode-active .product-card.retail,
     body.wholesale-mode-active .price.retail,
     body.wholesale-mode-active .wholesale-prompt,
     body.wholesale-mode-active .proposition-cta,
@@ -101,8 +102,8 @@
     .site-header {
         margin: 0;
         padding: 0;
-        padding-right: 2.25rem;
-        padding-left: 2.25rem;            
+        padding-right: 1.25rem;
+        padding-left: 1.25rem;            
         background: #0f172a;
         color: white;
         box-shadow: 0 2px 10px rgba(0,0,0,0.1);
@@ -131,15 +132,13 @@
         display: flex;
         align-items: center;
         gap: 8px; /* Spaces the icon perfectly from the text */
-        font-size: 1.4rem;
-        font-weight: 600;
-        color: #fff;
-        text-decoration: none;
     }
 
     .logo-icon {
-        width: 25px;
-        height: 25px;
+        margin: 0;
+        padding: 0;
+        width: 1.5rem;
+        height: 1.5rem;
         color: #85d668; /* Matches the icon stroke to your accent text */
         fill: #85d668;
         shape-rendering: geometricPrecision; 
@@ -147,6 +146,18 @@
         image-rendering: optimizeQuality; 
         fill-rule: evenodd; 
         clip-rule: evenodd
+    }
+
+    .logo-text {
+        margin: 0;
+        padding:0;
+        display: none;
+        align-items: center;
+        gap: 8px; /* Spaces the icon perfectly from the text */
+        font-size: 1.25rem;
+        font-weight: 600;
+        color: #fff;
+        text-decoration: none;
     }
 
     .navbar {
@@ -161,8 +172,8 @@
 
     .nav-links {
         margin: 0;
-        margin-top: .3125rem;
-        padding: .25rem 0;
+        margin-top: .125rem;
+        padding: .375rem 0;
         display: none;
         width: 100%;
         flex-direction: column;
@@ -187,6 +198,7 @@
         padding: 0;
         display: flex;
         align-items: center;
+        background: #1e293b;
         width: 100%;
     }
 
@@ -217,14 +229,14 @@
     .header-buttons {
         display: flex;
         align-items: center;
-        gap: 1rem;
+        gap: .875rem;
     }
         
     .mobile-toggle {
         margin: 0;
-        padding: .625rem .5rem;
+        padding: .625rem .25rem;
         display: block;
-        font-size: 1.5rem;
+        font-size: 1.375rem;
         cursor: pointer;
         background: none;
         border: none;
@@ -287,7 +299,7 @@
     /* Toggle Button */
     .profile-toggle {
         margin: 0;
-        padding: 0.5rem .5rem .376rem;
+        padding: 0.5rem .375rem .675rem;
         display: flex;
         align-items: center;
         gap: .5rem;
@@ -299,13 +311,6 @@
         color: #0f172a;
         transition: all 0.2s ease;
         line-height: 1;
-    }
-
-    .profile-toggle .user-avatar-small {
-        margin: 0;
-        padding: 0;
-        display: flex;
-        background: transparent;
     }
 
     .profile-toggle:hover {
@@ -326,7 +331,7 @@
         gap: .125rem;
         position: absolute;
         top: 2.9375rem;
-        right: 0;
+        left: 0;
         z-index: 100;
         min-width: 120px;
         box-sizing: border-box;
@@ -361,7 +366,7 @@
 
     .logout-span {
         margin: 0;
-        padding: .5rem 0;
+        padding: 0;
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -388,9 +393,12 @@
 
     .user-greeting {
         margin: 0;
-        padding: 0;
+        padding: .375rem .375rem .4375rem;
         display: flex;
         gap: .25rem;
+        background: #94a3b8;
+        border-radius: .25rem;
+        cursor: pointer;
     }
 
     .user-greeting .user-badge {
@@ -398,7 +406,8 @@
         padding: 0;
         display: flex;
         align-items: center;
-        gap: .5rem;
+        gap: .6875rem;
+        border-radius: .25rem;
     }
 
     .profile-btn-text,
@@ -415,11 +424,12 @@
         display: none;
         flex-direction: row;
         gap: .9375rem;
-        width: 225px;
+        width: max-content;
         background: #050e19;
+        cursor: pointer;
         position: absolute;
-        top: 2.5rem;
-        right: -1px;
+        top: 2.25rem;
+        left: 0;
         z-index: 100;
     }
 
@@ -457,32 +467,31 @@
         text-decoration: underline;
     }
 
-    .user-avatar,
     .user-avatar-small {
         margin: 0;
-        aspect-ratio: 1;
-        background: #94a3b8;
-    }
-
-    .user-avatar-small {
-        padding: .125rem;
-        font-size: 1.125rem;
+        padding: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: .9375rem;
     }
 
     .user-avatar {
-        display: none;
+        margin: 0;
         padding: .25rem;
+        display: none;
+        aspect-ratio: 1;
         font-size: 2rem;
+        background: #94a3b8;
     }
 
     .cart-btn {
         position: relative;
-        font-size: 1.5rem !important;
+        font-size: 1.375rem;
         cursor: pointer;
     }
 
     .cart-badge {
-        background: #f59e0b;
         color: #0f172a;
         font-size: 0.75rem;
         font-weight: 700;
@@ -494,19 +503,20 @@
     }
 
     /* ---------- BUTTONS & BADGES ---------- */
-        .btn {
-            display: inline-block;
-            padding: .75rem 1.5rem;
-            border-radius: 30px;
-            display: flex;
-            align-items: center;
-            align-content: center;
-            font-weight: 600;
-            text-decoration: none;
-            border: none;
-            cursor: pointer;
-            transition: 0.2s;
-        }
+        
+    .btn {
+        display: inline-block;
+        padding: .75rem 1.5rem;
+        border-radius: 30px;
+        display: flex;
+        align-items: center;
+        align-content: center;
+        font-weight: 600;
+        text-decoration: none;
+        border: none;
+        cursor: pointer;
+        transition: 0.2s;
+    }
 
         .btn-primary {
             background: #0f172a;
@@ -575,11 +585,9 @@
         /* ---------- HERO (SPLIT) ---------- */
         .hero {
             margin: 0;
-            padding: 0;
-            padding-right: 2.25rem;
-            padding-left: 2.25rem;            
-            padding-top: 2.25rem;
-            padding-bottom: 2.25rem;
+            padding: 2.25rem 0;
+            padding-right: 1.25rem;
+            padding-left: 1.25rem;            
             display: block;
             background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
         }        
@@ -659,8 +667,8 @@
         .page-content {
             margin: 0;
             padding: 3.75rem 0;
-            padding-right: 2.25rem;
-            padding-left: 2.25rem;
+            padding-right: 1.25rem;
+            padding-left: 1.25rem;
         }
 
         .main-content-inner {
@@ -954,17 +962,17 @@
             padding: 0;
             display: grid;
             grid-template-columns: 1fr;
-            gap: 1.75rem;
+            gap: 1.875rem;
         }
 
         .pdp-gallery {
-            background: #f8fafc;
+            margin: 0;
+            padding: 0;
             border-radius: 12px;
             display: flex;
             align-items: center;
             justify-content: center;
             flex-direction:column;
-            border: 1px solid #e2e8f0;
             color: #94a3b8;
             border-radius: 0;
             height: max-content;
@@ -973,13 +981,14 @@
 
         .pdp-gallery .gallery-inner {
             margin: 0;
-            padding: 1.5rem;
+            padding: 0;
             display: flex;
             flex-direction: column;
             align-items: center;
             align-content: center;
+            justify-content: flex-start;
             width: 100%;
-            height: 100%;
+            height: max-content;
             gap: .75rem;
         }
 
@@ -991,7 +1000,7 @@
             align-content: center;
             justify-content: center;
             flex-direction: column;
-            aspect-ratio: 4 / 2.5;
+            aspect-ratio: 1;
             background: #dee9f4;
             width: 100%;
         }
@@ -1014,16 +1023,20 @@
         .pdp-gallery .gallery-carousel {
             margin: 0;
             display:flex;
+            align-items: center;
             gap: .75rem;
+            width: 100%;
+            overflow: hidden;
         }
 
         .pdp-gallery .gallery-carousel .thumbnail {
             margin: 0;
             padding: 0;
-            width: 65px;
-            height: 65px;
+            width: 35px;
+            height: 35px;
             background:#e6edf7;
             border-radius: .25rem;
+
         }
 
         .pdp-summary {
@@ -1073,7 +1086,6 @@
             font-weight: 700;
             color: #980202;
             gap: .625rem;
-            white-space: nowrap;
         }
 
         .pdp-summary .price .label {
@@ -1112,12 +1124,15 @@
             margin: 0;
             padding: .5rem .875rem;
             display: flex;
+            flex-flow: row wrap;
             align-items: center;
             align-content: center;
+            gap: .125rem;
             font-size: .9375rem;
             background: #fff0b5;
             border-radius: .5rem;
-            width: max-content;
+            width: 100%;
+            max-width: max-content;
         }
 
         .pdp-summary .wholesale-prompt a {
@@ -1859,7 +1874,51 @@
     }
 
     /* ---------- RESPONSIVE ---------- */
-    @media screen and ( min-width: 472px ) {
+    @media screen and (min-width: 360px) {
+
+        .logo-text {
+            display: flex;
+        }
+            
+    }
+
+    @media screen and ( min-width: 426px ) {
+            
+        .site-header, 
+        .hero,
+        .main-content,
+        .page-content {
+            padding-right: 2rem;
+            padding-left: 2rem;    
+        }
+
+        .logo-icon {
+            width: 1.5625rem;
+            height: 1.5625rem;
+        }
+
+        .header-buttons {
+            gap: 1.25rem;
+        }
+            
+        .mobile-toggle {
+            padding: .625rem .5rem;
+            font-size: 1.5rem;
+        }
+            
+        .user-avatar-small {
+            font-size: 1rem;
+        }
+
+        .cart-btn {
+            font-size: 1.5rem;
+                cursor: pointer;
+        }
+
+        .pdp-gallery .gallery-carousel .thumbnail {
+            width: 65px;
+            height: 65px;
+        }
 
         .featured-grid,  
         .products-grid {
@@ -1868,6 +1927,18 @@
 
     }
         
+    @media screen and ( min-width: 576px ) {
+
+        .site-header, 
+        .hero,
+        .main-content,
+        .page-content {
+            padding-right: 2.5rem;
+            padding-left: 2.5rem;    
+        }
+
+    }
+
     @media screen and ( min-width: 768px ) {
 
         .mobile-toggle {
@@ -1881,7 +1952,7 @@
             flex-direction: row;
             align-items: center;
             width: max-content;
-            gap: 1.125rem;
+            gap: 1rem;
             border-top: 0;
             position: unset;
             background: unset;
@@ -1889,6 +1960,7 @@
 
         .nav-link {
             width: max-content;
+            background: unset;
         }
 
         .nav-link a {
@@ -1913,6 +1985,8 @@
                 
         .profile-tabs {
             width: 100%;
+            right: 0;
+            left: unset;
         }
 
         .profile-toggle .user-avatar-small {
@@ -1926,96 +2000,102 @@
         }
 
         .logout-tooltip {
+            width: 227px;
             gap: .875rem;
-            top: 2.75rem;
+            top: 2.9375rem;
             right: 0;
+            left: unset;
         }
-            
+        
         .user-id .user-name {
             font-size: 1rem;
+        }
+
+        .user-greeting {
+            padding: 0;
+            background: transparent;
         }
 
         .logout-span {
             padding: .75rem .25rem;
         }
 
-        .user-avatar-small {
-            font-size: .875rem;
+        .user-badge .user-avatar-small {
+            padding: .375rem .375rem .4375rem;
+            font-size: .9375rem;
+            background: #94a3b8;
+            border-radius: .25rem;
         }
 
         .user-avatar {
             display: flex;
         }
 
-            .auth-view .auth-content {
-                max-width: 500px;
-            }
-
-            .auth-view .auth-notice {
-                display: flex;
-            }
-
-            .auth-view .auth-grid {
-                flex-flow: row wrap;
-            }
-
-            .hero-inner { 
-                grid-template-columns: repeat(2, 1fr);            
-                gap: 1.5rem;
-            } 
-
-            .hero-col h1 { 
-                max-width: 350px;
-            }
-
-            .featured-grid,
-            .products-grid {
-                grid-template-columns: repeat( auto-fill, minmax(250px, 1fr) );
-            }
-
-            .proposition-values {
-                grid-template-columns: repeat(3,1fr);
-                gap: 1.25rem;
-            }
-
+        .auth-view .auth-content {
+            max-width: 500px;
         }
 
-        @media screen and ( min-width: 876px ) {
-
-            .pdp-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-
-            .pdp-grid .pdp-gallery {
-                position: sticky;
-                top: 70px;
-            }
-
-            .pdp-gallery .picture {
-                aspect-ratio: 1;                    
-            }
-
-            .account-grid {
-                grid-template-columns: repeat(2, 1fr);
-                gap: 2.5rem;
-            }
-
-            .cart-grid {
-                grid-template-columns: repeat(2, 1fr);
-                gap: 2.5rem;
-            }
-
+        .auth-view .auth-notice {
+            display: flex;
         }
+
+        .auth-view .auth-grid {
+            flex-flow: row wrap;
+        }
+
+        .hero-inner { 
+            grid-template-columns: repeat(2, 1fr);            
+            gap: 1.5rem;
+        } 
+
+        .hero-col h1 { 
+            max-width: 350px;
+        }
+
+        .featured-grid,
+        .products-grid {
+            grid-template-columns: repeat( auto-fill, minmax(250px, 1fr) );
+        }
+
+        .proposition-values {
+            grid-template-columns: repeat(3,1fr);
+            gap: 1.25rem;
+        }
+
+    }
+
+    @media screen and ( min-width: 826px ) {
+
+        .pdp-grid {
+            grid-template-columns: 1fr 1.5fr;
+            gap: 2.25rem;
+        }
+
+        .pdp-grid .pdp-gallery {
+            position: sticky;
+            top: 70px;
+        }
+
+        .pdp-gallery .picture {
+            aspect-ratio: 1;                    
+        }
+
+        .account-grid {
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2.5rem;
+        }
+
+        .cart-grid {
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2.5rem;
+        }
+
+    }
 
     @media screen and ( min-width: 992px ) {
 
         .products-grid {
             grid-template-columns: repeat(4, 1fr);
-        }
-
-        .pdp-grid {
-            grid-template-columns: 1.45fr 1.55fr;
-            gap: 3.125rem;
         }
 
         .account-grid {
